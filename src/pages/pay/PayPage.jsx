@@ -36,8 +36,8 @@ export default function PayPage({ onNavigateHome }) {
     setPayMsg(null);
 
     try {
-      // 调用接口保存用户报名信息
-      const res = await fetch(`${API_BASE}/users`, {
+      // 1. 先保存用户报名信息
+      const userRes = await fetch(`${API_BASE}/users`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -50,19 +50,48 @@ export default function PayPage({ onNavigateHome }) {
         }),
       });
 
-      const result = await res.json();
+      const userResult = await userRes.json();
 
-      if (result.code === 0) {
-        setPayMsg({ type: 'success', text: '支付成功！' });
+      if (userResult.code !== 0) {
+        setPayMsg({ type: 'error', text: userResult.message || '保存用户信息失败' });
+        return;
+      }
+
+      // 2. 免费票种直接跳转票夹
+      if (orderInfo.price === 0) {
+        setPayMsg({ type: 'success', text: '报名成功！' });
         setTimeout(() => {
           window.location.href = '/ticket';
         }, 1200);
+        return;
+      }
+
+      // 3. 调用微信H5支付接口
+      const outTradeNo = `KACE_${orderInfo.phone}_${Date.now()}`;
+      const payRes = await fetch(`${API_BASE}/pay/h5`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          out_trade_no: outTradeNo,
+          total: orderInfo.price,
+          description: `KACE 2026 ${orderInfo.ticketTitle || '展会门票'}`,
+        }),
+      });
+
+      const payResult = await payRes.json();
+
+      if (payResult.code === 0 && payResult.data?.h5_url) {
+        // 跳转到微信支付页面
+        window.location.href = payResult.data.h5_url;
       } else {
-        setPayMsg({ type: 'error', text: result.message || '支付失败，请重试' });
+        setPayMsg({
+          type: 'error',
+          text: payResult.message || '创建支付订单失败',
+        });
       }
     } catch (err) {
-      console.error('支付失败:', err);
-      setPayMsg({ type: 'error', text: '网络错误，请检查后端服务是否启动' });
+      console.error('支付异常:', err);
+      setPayMsg({ type: 'error', text: '网络错误，请稍后重试' });
     } finally {
       setPaying(false);
     }

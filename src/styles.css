@@ -685,6 +685,7 @@ img {
   .marquee__item--creator {
     width: 300px;
   }
+
 }
 
 @media (max-width: 720px) {
@@ -767,4 +768,5 @@ img {
     width: 136px;
     height: auto;
   }
+
 }

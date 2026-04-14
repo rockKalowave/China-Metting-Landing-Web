@@ -1,5 +1,15 @@
 # 项目技术架构与目录结构
 
+
+## 项目运行前操作
+npm install
+启动
+npm run serve
+
+打包
+npm run build
+
+
 ## 技术栈
 
 - 构建工具：Vite 7

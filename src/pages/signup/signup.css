@@ -1,0 +1,362 @@
+.signup-page {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 50% 40%, rgba(132, 181, 255, 0.22), transparent 32%),
+    linear-gradient(180deg, #3f63e6 0%, #2a63f0 100%);
+  color: #ffffff;
+}
+
+.signup-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  padding: 0 6px;
+  backdrop-filter: blur(18px);
+}
+
+.signup-header__inner {
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  padding: 20px 24px;
+  background: linear-gradient(180deg, rgba(86, 109, 233, 0.92) 0%, rgba(72, 102, 226, 0.88) 100%);
+  /* box-shadow: inset 0 -3px 0 rgba(255, 177, 72, 0.16); */  /* 下标签*/
+  border-radius: 0 0 2px 2px;
+}
+
+.signup-header__brand,
+.signup-header__link,
+.signup-header__cta {
+  border: 0;
+  cursor: pointer;
+  font: inherit;
+}
+
+.signup-header__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+  background: transparent;
+  color: #ffffff;
+  padding: 0;
+}
+
+.signup-header__brand-mark {
+  width: 26px;
+  height: 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.signup-header__brand-mark svg {
+  width: 100%;
+  height: 100%;
+}
+
+.signup-header__brand-text {
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.signup-header__nav {
+  min-width: 0;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.signup-header__nav::-webkit-scrollbar {
+  display: none;
+}
+
+.signup-header__link {
+  flex-shrink: 0;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.92);
+  padding: 12px 18px;
+  border-radius: 999px;
+  font-weight: 700;
+}
+
+.signup-header__link--active {
+  background: #ffffff;
+  color: #3c63ed;
+  box-shadow: 0 12px 28px rgba(29, 54, 142, 0.18);
+}
+
+.signup-header__cta {
+  flex-shrink: 0;
+  min-width: 124px;
+  padding: 14px 24px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+  color: #ffffff;
+  font-weight: 800;
+}
+
+.signup-hero {
+  position: relative;
+  min-height: calc(100vh - 100px);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 76px 44px 24px;
+}
+
+.signup-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 18%, rgba(132, 181, 255, 0.22), transparent 30%),
+    linear-gradient(90deg, rgba(53, 103, 242, 0.14) 0%, rgba(77, 133, 255, 0.08) 100%);
+  pointer-events: none;
+}
+
+.signup-hero__decor {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+  opacity: 0.82;
+  filter: drop-shadow(0 20px 30px rgba(21, 53, 142, 0.22));
+}
+
+.signup-hero__decor--left {
+  left: -160px;
+  bottom: -120px;
+  width: min(40vw, 720px);
+}
+
+.signup-hero__decor--right {
+  top: -90px;
+  right: -140px;
+  width: min(44vw, 780px);
+}
+
+.signup-hero__content {
+  position: relative;
+  z-index: 1;
+  width: min(1280px, 100%);
+  margin: 0 auto;
+  text-align: center;
+}
+
+.signup-hero__title {
+  margin: 0;
+  font-size: clamp(5.2rem, 10vw, 8.4rem);
+  line-height: 0.92;
+  font-weight: 300;
+  letter-spacing: -0.05em;
+}
+
+.signup-hero__title-cn {
+  margin: 24px 0 0;
+  font-size: clamp(2.2rem, 4.4vw, 4.2rem);
+  line-height: 1.2;
+  font-weight: 500;
+}
+
+.signup-hero__title-en {
+  margin: 18px 0 0;
+  font-size: clamp(1.4rem, 2.6vw, 2.2rem);
+  line-height: 1.35;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.94);
+}
+
+.signup-hero__notice {
+  margin-top: 76px;
+  font-size: clamp(2.2rem, 4.8vw, 3.8rem);
+  line-height: 1.2;
+  font-weight: 500;
+}
+
+.signup-hero__arrow {
+  margin-top: 18px;
+  color: rgba(255, 255, 255, 0.86);
+}
+
+.signup-hero__arrow svg {
+  width: 44px;
+  height: 44px;
+}
+
+.signup-hero__qr-wrap {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.signup-hero__qr-frame {
+  width: min(23vw, 340px);
+  aspect-ratio: 1;
+  padding: 18px;
+  border-radius: 22px;
+  border: 2px solid rgba(255, 255, 255, 0.48);
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 24px 60px rgba(13, 44, 135, 0.18);
+}
+
+.signup-hero__qr {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+  background: #ffffff;
+}
+
+.signup-hero__footer {
+  position: relative;
+  z-index: 1;
+  width: min(1680px, 100%);
+  margin: 26px auto 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  align-items: end;
+  color: rgba(255, 255, 255, 0.95);
+  font-size: clamp(1rem, 1.7vw, 1.25rem);
+  font-weight: 600;
+}
+
+.signup-hero__footer p {
+  margin: 0;
+}
+
+.signup-hero__footer p:nth-child(2) {
+  text-align: center;
+}
+
+.signup-hero__footer p:last-child {
+  text-align: right;
+}
+
+@media (max-width: 1200px) {
+  .signup-header__inner {
+    gap: 18px;
+    padding-inline: 18px;
+  }
+
+  .signup-hero {
+    padding-inline: 28px;
+  }
+
+  .signup-hero__qr-frame {
+    width: min(34vw, 320px);
+  }
+}
+
+@media (max-width: 860px) {
+  .signup-header__inner {
+    min-height: 84px;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-block: 16px;
+  }
+
+  .signup-header__nav {
+    order: 3;
+    flex-basis: 100%;
+    justify-content: flex-start;
+  }
+
+  .signup-header__cta {
+    min-width: 110px;
+  }
+
+  .signup-hero {
+    min-height: calc(100vh - 132px);
+    padding: 40px 20px 22px;
+  }
+
+  .signup-hero__title-cn {
+    margin-top: 16px;
+  }
+
+  .signup-hero__notice {
+    margin-top: 40px;
+  }
+
+  .signup-hero__qr-frame {
+    width: min(64vw, 300px);
+  }
+
+  .signup-hero__footer {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    text-align: center;
+  }
+
+  .signup-hero__footer p:nth-child(2),
+  .signup-hero__footer p:last-child {
+    text-align: center;
+  }
+}
+
+@media (max-width: 560px) {
+  .signup-header {
+    padding-inline: 0;
+  }
+
+  .signup-header__inner {
+    border-radius: 0;
+  }
+
+  .signup-header__brand-text {
+    font-size: 1.05rem;
+  }
+
+  .signup-header__link {
+    padding: 10px 14px;
+    font-size: 0.95rem;
+  }
+
+  .signup-header__cta {
+    padding: 12px 18px;
+  }
+
+  .signup-hero__title {
+    font-size: clamp(3.8rem, 18vw, 5.4rem);
+  }
+
+  .signup-hero__title-cn {
+    font-size: clamp(1.7rem, 8vw, 2.4rem);
+  }
+
+  .signup-hero__title-en {
+    font-size: 1.05rem;
+  }
+
+  .signup-hero__notice {
+    font-size: clamp(1.8rem, 8vw, 2.4rem);
+  }
+
+  .signup-hero__arrow svg {
+    width: 36px;
+    height: 36px;
+  }
+
+  .signup-hero__qr-frame {
+    width: min(78vw, 280px);
+    padding: 14px;
+    border-radius: 18px;
+  }
+
+  .signup-hero__decor--left {
+    left: -90px;
+    bottom: -60px;
+    width: min(72vw, 360px);
+  }
+
+  .signup-hero__decor--right {
+    top: 30px;
+    right: -90px;
+    width: min(76vw, 360px);
+  }
+}

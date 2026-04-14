@@ -10,7 +10,7 @@ npm run serve
 npm run build
 
 
-## 技术栈
+## 前端技术栈
 
 - 构建工具：Vite 7
 - 前端框架：React 19
@@ -19,6 +19,7 @@ npm run build
 - 开发语言：JavaScript + JSX
 - 样式方案：原生 CSS
 - 资源管理：`public/landing` 静态资源 + `src/assets` 本地图片资源
+
 
 ## 技术架构图
 
@@ -101,6 +102,45 @@ web/
 - `src/styles.css`：控制布局、响应式、动画和整体视觉样式
 - `public/landing`：存放通过 URL 访问的大型静态设计资源
 - `src/assets`：存放在 React 中直接导入使用的图片素材
+
+
+
+
+## 后端技术栈
+运行环境：Node.js
+Web 框架：Express（最简单、文档最多）
+数据库：SQLite3（文件型数据库，不用装服务）
+跨域：cors（解决 H5 调用接口报错）
+解析参数：body-parser / express.json()
+表单 / 图片上传：multer（如果要上传头像 / Logo）
+自动重启：nodemon（开发用，改代码不用重启服务）
+
+
+## 目录结构图
+```text
+web/
+|-- server/
+|-- ├── index.js           # 服务入口
+|-- ├── package.json       # 依赖配置
+|-- ├── README.md          # 接口文档
+|-- ├── data/              # 数据库目录
+|-- │   └── .gitkeep
+|-- ├── models/
+|-- │   └── User.js        # 用户模型 (SQLite)
+|-- └── routes/
+|--     └── user.js        # 用户接口路由
+```
+API 接口列表
+方法	路径	功能
+POST	/api/users	保存/更新用户报名信息
+GET	/api/users	获取所有用户列表
+GET	/api/users/:phone	根据手机号查询
+
+### 说明
+服务器运行在
+ http://localhost:3000
+
+
 
 ## 当前工程特征
 

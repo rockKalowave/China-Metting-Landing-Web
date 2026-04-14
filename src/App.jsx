@@ -11,6 +11,7 @@ import {
 } from './landingData';
 import SignupPage from './pages/signup/SignupPage';
 import BuyPage from './pages/buy/Buy';
+import TicketPage from './pages/ticket/TicketPage';
 
 function ImageSection({ id, image, alt, children, bleed = false }) {
   return (
@@ -181,6 +182,7 @@ function App() {
   const navSyncTimerRef = useRef(null);
   const isSignupPage = currentPath === '/signup';
   const isBuyPage = currentPath === '/buy';
+  const isTicketPage = currentPath === '/ticket';
 
   useEffect(() => {
     document.title = isSignupPage
@@ -274,6 +276,10 @@ function App() {
 
   if (isBuyPage) {
     return <BuyPage onNavigateHome={() => navigateTo('/')} />;
+  }
+
+  if (isTicketPage) {
+    return <TicketPage />;
   }
 
   return (

@@ -32,6 +32,36 @@ const signupTickets = [
       { text: '本票种不含“商达撮合区”入场权限', included: false },
     ],
   },
+  {
+    id: 'vip-privilege-icket',
+    title: '尊享VIP票',
+    originalPrice: 1999,
+    price: 1299,
+    note: '8月4日或8月5日任选一日',
+    features: [
+      { text: '双日尊享，畅行全展区与完整议程', included: true },
+      { text: '商达撮合会专属入场资格', included: true },
+      { text: '主会场演讲区VIP排落座,位置有限先到先得', included: true },
+      { text: '精美周边大礼包+限量周边+专属伴手礼', included: true },
+      { text: '大会商务午餐', included: true },
+      { text: 'VIP私享社群，持续链接优质资源', included: true },
+    ],
+  },
+  {
+    id: 'starlight-gala-ticket',
+    title: '星耀晚宴票',
+    // originalPrice: 399,
+    price: 8999,
+    note: '8月4日或8月5日任选一日',
+    features: [
+      { text: '择日出席，智享全程', included: true },
+      { text: '单日畅行全展区与完整议程', included: true },
+      { text: '解锁全体验区与品牌展位', included: true },
+      { text: '现场打卡集章，兑换限量周边', included: true },
+      { text: '展商品牌互动，领取专属福利', included: true },
+      { text: '本票种不含“商达撮合区”入场权限', included: false },
+    ],
+  },
 ];
 
 function IconUser() {

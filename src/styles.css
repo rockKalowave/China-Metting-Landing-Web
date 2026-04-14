@@ -240,8 +240,9 @@ img {
 }
 
 .hero__title {
-  margin: 22px 0 0;
-  color: var(--primary);
+  margin: 0px 0 0;
+  color: #fff; /* 白色字体 */
+  /* color: var(--primary); */
   font-size: clamp(4rem, 12vw, 8.5rem);
   line-height: 0.92;
   letter-spacing: -0.06em;
@@ -255,19 +256,19 @@ img {
 .hero__subtitle {
   font-size: clamp(1.5rem, 3.2vw, 2.8rem);
   font-weight: 800;
-  color: var(--primary);
+  color: #fff; /* 白色字体 */
 }
 
 .hero__subtitle--en {
   margin-top: 4px;
   font-size: clamp(1.05rem, 2.1vw, 1.8rem);
   font-weight: 700;
-  color: #4d77dd;
+  color: #fff; /* 白色字体 */
 }
 
 .hero__meta {
   font-size: clamp(1rem, 1.8vw, 1.3rem);
-  color: #5470a8;
+  color: #fff; /* 白色字体 */
   font-weight: 600;
 }
 

@@ -142,11 +142,11 @@ function App() {
           <div className="section-shell hero__shell">
             <div className="hero__copy">
               <span className="hero__eyebrow">中国 · 深圳</span>
-              <h1 className="hero__title">KAGGE</h1>
-              <p className="hero__subtitle">全球AI出海展览会</p>
-              <p className="hero__subtitle hero__subtitle--en">Kalodata AI Go Global Exposition</p>
-              <p className="hero__meta">2026年8月4日 - 8月5日</p>
-              <p className="hero__meta">深圳福田国际会展中心</p>
+              <h1 className="hero__title">KACE 2026</h1>
+              <p className="hero__subtitle">中国最大的AI跨境电商与海外达人合作展览会</p>
+              <p className="hero__subtitle hero__subtitle--en">2026 kalodata AI Cross-border E-commerce & Influencer Expo </p>
+              <p className="hero__meta">2026年8月4日 - 8月5日 | 深圳福田国际会展中心</p>
+              <p className="hero__meta"></p>
               <div className="hero__actions">
                 <button className="hero__button hero__button--primary" onClick={() => scrollToSection('contact')} type="button">
                   立即报名

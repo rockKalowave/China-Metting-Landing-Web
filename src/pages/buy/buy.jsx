@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { heroDecor } from '../../landingData';
-import './signup.css';
+import './buy.css';
 
 const signupTickets = [
   {

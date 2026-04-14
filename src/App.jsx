@@ -10,6 +10,7 @@ import {
   sectionImages,
 } from './landingData';
 import SignupPage from './pages/signup/SignupPage';
+import BuyPage from './pages/buy/Buy';
 
 function ImageSection({ id, image, alt, children, bleed = false }) {
   return (
@@ -179,6 +180,7 @@ function App() {
   const [ctaHovered, setCtaHovered] = useState(false);
   const navSyncTimerRef = useRef(null);
   const isSignupPage = currentPath === '/signup';
+  const isBuyPage = currentPath === '/buy';
 
   useEffect(() => {
     document.title = isSignupPage
@@ -268,6 +270,10 @@ function App() {
 
   if (isSignupPage) {
     return <SignupPage onNavigateHome={() => navigateTo('/')} />;
+  }
+
+  if (isBuyPage) {
+    return <BuyPage onNavigateHome={() => navigateTo('/')} />;
   }
 
   return (

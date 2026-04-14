@@ -278,7 +278,7 @@ export default function SignupPage({ onNavigateHome }) {
                   <IconChevron />
                 </span>
               </div>
-              <input id="phone" placeholder="请输入手机号" value={formData.phone} onChange={handleChange('phone')} />
+              <input id="phone" maxLength={11} placeholder="请输入手机号" value={formData.phone} onChange={handleChange('phone')} />
             </div>
           </div>
 

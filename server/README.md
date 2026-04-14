@@ -13,6 +13,10 @@ server/
 ```
 
 ## 快速开始
+支付使用前需准备的证书文件（server/certs/）
+apiclient_key.pem — 商户API证书私钥（必填，签名用）
+wechatpay_cert.pem — 微信平台证书公钥（必填，回调验签用）
+
 
 ### 安装依赖
 

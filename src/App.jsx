@@ -10,7 +10,7 @@ import {
   sectionImages,
 } from './landingData';
 import SignupPage from './pages/signup/SignupPage';
-import BuyPage from './pages/buy/Buy';
+import BuyPage from './pages/buy/buy';
 import TicketPage from './pages/ticket/TicketPage';
 
 function ImageSection({ id, image, alt, children, bleed = false }) {

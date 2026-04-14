@@ -20,6 +20,14 @@ npm run build
 - 样式方案：原生 CSS
 - 资源管理：`public/landing` 静态资源 + `src/assets` 本地图片资源
 
+路由：
+跳转立即报名页面：
+http://localhost:5173/signup
+buy购票页面：
+http://localhost:5173/buy
+
+支付成功页面：
+http://localhost:5173/ticket
 
 ## 技术架构图
 

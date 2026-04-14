@@ -1,14 +1,12 @@
 
-// const sqlite3 = require('sqlite3').verbose();
-
-// const Database = require('better-sqlite3');
 const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
+
 const dbPath = path.join(__dirname, '../database.db');
-// 正确创建实例
 const db = new sqlite3.Database(dbPath);
+
 // 创建用户信息表
-db.exec(`
+db.run(`
   CREATE TABLE IF NOT EXISTS users (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
@@ -24,28 +22,36 @@ db.exec(`
 `);
 
 // 查询所有用户
-const findAll = db.prepare(`
-  SELECT * FROM users 
-  ORDER BY created_at DESC
-`);
+function findAll(callback) {
+  db.all(`SELECT * FROM users ORDER BY created_at DESC`, callback);
+}
 
 // 根据手机号查询
-const findByPhone = db.prepare(`
-  SELECT * FROM users WHERE phone = ?
-`);
+function findByPhone(phone, callback) {
+  db.get(`SELECT * FROM users WHERE phone = ?`, [phone], callback);
+}
 
 // 新增用户
-const insertUser = db.prepare(`
-  INSERT INTO users (name, company, position, phone, email, ticket_type) 
-  VALUES (?, ?, ?, ?, ?, ?)
-`);
+function insertUser(name, company, position, phone, email, ticket_type, callback) {
+  db.run(
+    `INSERT INTO users (name, company, position, phone, email, ticket_type) VALUES (?, ?, ?, ?, ?, ?)`,
+    [name, company, position, phone, email, ticket_type],
+    function (err) {
+      callback(err, this);
+    }
+  );
+}
 
 // 更新用户
-const updateUser = db.prepare(`
-  UPDATE users 
-  SET name = ?, company = ?, position = ?, email = ?, ticket_type = ?, updated_at = datetime('now', 'localtime')
-  WHERE id = ?
-`);
+function updateUser(name, company, position, email, ticket_type, id, callback) {
+  db.run(
+    `UPDATE users SET name = ?, company = ?, position = ?, email = ?, ticket_type = ?, updated_at = datetime('now','localtime') WHERE id = ?`,
+    [name, company, position, email, ticket_type, id],
+    function (err) {
+      callback(err, this);
+    }
+  );
+}
 
 module.exports = {
   db,

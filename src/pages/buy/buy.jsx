@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { heroDecor } from '../../landingData';
 import './buy.css';
 
+const API_BASE = 'http://localhost:3000/api';
+
 const signupTickets = [
   {
     id: 'early-bird',
@@ -142,6 +144,64 @@ function IconCheck({ included = true }) {
 
 export default function SignupPage({ onNavigateHome }) {
   const [selectedTicket, setSelectedTicket] = useState(signupTickets[0].id);
+  const [formData, setFormData] = useState({
+    identity: '设计师',
+    company: '',
+    name: '',
+    phone: '',
+    areaCode: '+86',
+  });
+  const [submitting, setSubmitting] = useState(false);
+  const [submitMsg, setSubmitMsg] = useState(null);
+
+  const handleChange = (field) => (e) => {
+    setFormData((prev) => ({ ...prev, [field]: e.target.value }));
+  };
+
+  const handleSubmit = async () => {
+    const { identity, company, name, phone } = formData;
+
+    if (!name || !phone || !company) {
+      setSubmitMsg({ type: 'error', text: '请填写所有必填项' });
+      return;
+    }
+
+    const selected = signupTickets.find((t) => t.id === selectedTicket);
+
+    setSubmitting(true);
+    setSubmitMsg(null);
+
+    try {
+      const res = await fetch(`${API_BASE}/users`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name,
+          company,
+          position: identity,
+          phone,
+          email: '',
+          ticket_type: selected?.title || selectedTicket,
+        }),
+      });
+
+      const result = await res.json();
+
+      if (result.code === 0) {
+        setSubmitMsg({ type: 'success', text: result.message || '报名成功！' });
+        setTimeout(() => {
+          window.location.href = '/ticket';
+        }, 1200);
+      } else {
+        setSubmitMsg({ type: 'error', text: result.message || '报名失败，请重试' });
+      }
+    } catch (err) {
+      console.error('提交失败:', err);
+      setSubmitMsg({ type: 'error', text: '网络错误，请检查后端服务是否启动' });
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   return (
     <div className="signup-page">
@@ -188,7 +248,7 @@ export default function SignupPage({ onNavigateHome }) {
               <span className="signup-input__icon">
                 <IconUser />
               </span>
-              <select defaultValue="设计师" id="identity">
+              <select id="identity" value={formData.identity} onChange={handleChange('identity')}>
                 <option>设计师</option>
                 <option>品牌方</option>
                 <option>跨境卖家</option>
@@ -209,7 +269,7 @@ export default function SignupPage({ onNavigateHome }) {
               <span className="signup-input__icon">
                 <IconCube />
               </span>
-              <input defaultValue="Kalodata" id="company" placeholder="请输入公司或品牌名称" />
+              <input id="company" placeholder="请输入公司或品牌名称" value={formData.company} onChange={handleChange('company')} />
             </div>
           </div>
 
@@ -221,7 +281,7 @@ export default function SignupPage({ onNavigateHome }) {
               <span className="signup-input__icon">
                 <IconCard />
               </span>
-              <input defaultValue="Gutabled" id="name" placeholder="请输入姓名" />
+              <input id="name" placeholder="请输入姓名" value={formData.name} onChange={handleChange('name')} />
             </div>
           </div>
 
@@ -231,7 +291,7 @@ export default function SignupPage({ onNavigateHome }) {
             </label>
             <div className="signup-phone">
               <div className="signup-phone__prefix">
-                <select aria-label="国家区号" defaultValue="+86">
+                <select aria-label="国家区号" value={formData.areaCode} onChange={handleChange('areaCode')}>
                   <option>+86</option>
                   <option>+852</option>
                   <option>+65</option>
@@ -241,7 +301,7 @@ export default function SignupPage({ onNavigateHome }) {
                   <IconChevron />
                 </span>
               </div>
-              <input defaultValue="1231234123" id="phone" placeholder="请输入手机号" />
+              <input id="phone" placeholder="请输入手机号" value={formData.phone} onChange={handleChange('phone')} />
             </div>
           </div>
 
@@ -297,8 +357,18 @@ export default function SignupPage({ onNavigateHome }) {
             </div>
           </section>
 
-          <button className="signup-submit" type="button">
-            确定
+          {submitMsg && (
+            <div className={`signup-msg signup-msg--${submitMsg.type}`}>
+              {submitMsg.text}
+            </div>
+          )}
+          <button
+            className="signup-submit"
+            type="button"
+            onClick={handleSubmit}
+            disabled={submitting}
+          >
+            {submitting ? '提交中...' : '确定'}
           </button>
         </section>
       </main>

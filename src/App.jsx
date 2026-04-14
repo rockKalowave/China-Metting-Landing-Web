@@ -141,7 +141,7 @@ function App() {
           <img alt="" aria-hidden="true" className="hero__background" src={heroDecor.background} />
           <div className="section-shell hero__shell">
             <div className="hero__copy">
-              <span className="hero__eyebrow">中国 · 深圳</span>
+              <span className="hero__eyebrow"></span>
               <h1 className="hero__title">KACE 2026</h1>
               <p className="hero__subtitle">中国最大的AI跨境电商与海外达人合作展览会</p>
               <p className="hero__subtitle hero__subtitle--en">2026 kalodata AI Cross-border E-commerce & Influencer Expo </p>

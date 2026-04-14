@@ -162,10 +162,7 @@ img {
   background: rgba(255, 255, 255, 0.22);
 }
 
-.section-shell {
-  width: min(1440px, calc(100vw - 40px));
-  margin: 0 auto;
-}
+
 
 .hero,
 .content-section {
@@ -231,7 +228,7 @@ img {
   min-width: 120px;
   padding: 8px 14px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.74);
+  background: transparent; /* 背景去掉 */
   color: var(--primary-strong);
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -386,12 +383,15 @@ img {
 }
 
 .hero__highlights {
-  margin: 26px auto 0;
+  margin: 46px auto 0;
   max-width: 1300px;
+  
 }
 
 .hero__highlights img {
   width: 100%;
+  width: min(1440px, calc(100vw - 40px));
+  margin: 0 auto;
 }
 
 /* 展会现场照片展示条 */

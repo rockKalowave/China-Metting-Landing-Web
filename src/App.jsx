@@ -151,9 +151,9 @@ function App() {
                 <button className="hero__button hero__button--primary" onClick={() => scrollToSection('contact')} type="button">
                   立即报名
                 </button>
-                <button className="hero__button hero__button--ghost" onClick={() => scrollToSection('content')} type="button">
+                {/* <button className="hero__button hero__button--ghost" onClick={() => scrollToSection('content')} type="button">
                   查看议程
-                </button>
+                </button> */}
               </div>
             </div>
 

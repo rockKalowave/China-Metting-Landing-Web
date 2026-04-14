@@ -2,8 +2,6 @@ import { useState } from 'react';
 import { heroDecor } from '../../landingData';
 import './buy.css';
 
-const API_BASE = 'http://localhost:3000/api';
-
 const signupTickets = [
   {
     id: 'early-bird',
@@ -151,14 +149,13 @@ export default function SignupPage({ onNavigateHome }) {
     phone: '',
     areaCode: '+86',
   });
-  const [submitting, setSubmitting] = useState(false);
   const [submitMsg, setSubmitMsg] = useState(null);
 
   const handleChange = (field) => (e) => {
     setFormData((prev) => ({ ...prev, [field]: e.target.value }));
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
     const { identity, company, name, phone } = formData;
 
     if (!name || !phone || !company) {
@@ -168,49 +165,19 @@ export default function SignupPage({ onNavigateHome }) {
 
     const selected = signupTickets.find((t) => t.id === selectedTicket);
 
-    setSubmitting(true);
-    setSubmitMsg(null);
+    // 保存订单信息到 sessionStorage 供支付页读取
+    sessionStorage.setItem('kace_order', JSON.stringify({
+      ticketTitle: selected?.title || selectedTicket,
+      name,
+      phone,
+      company,
+      position: identity,
+      price: selected?.price ?? 0,
+      originalPrice: selected?.originalPrice ?? 0,
+    }));
 
-    try {
-      const res = await fetch(`${API_BASE}/users`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name,
-          company,
-          position: identity,
-          phone,
-          email: '',
-          ticket_type: selected?.title || selectedTicket,
-        }),
-      });
-
-      const result = await res.json();
-
-      if (result.code === 0) {
-        // 保存订单信息到 sessionStorage 供支付页读取
-        const selected = signupTickets.find((t) => t.id === selectedTicket);
-        sessionStorage.setItem('kace_order', JSON.stringify({
-          ticketTitle: selected?.title || selectedTicket,
-          name,
-          phone,
-          company,
-          price: selected?.price ?? 0,
-          originalPrice: selected?.originalPrice ?? 0,
-        }));
-        setSubmitMsg({ type: 'success', text: result.message || '报名成功！' });
-        setTimeout(() => {
-          window.location.href = '/pay';
-        }, 1200);
-      } else {
-        setSubmitMsg({ type: 'error', text: result.message || '报名失败，请重试' });
-      }
-    } catch (err) {
-      console.error('提交失败:', err);
-      setSubmitMsg({ type: 'error', text: '网络错误，请检查后端服务是否启动' });
-    } finally {
-      setSubmitting(false);
-    }
+    // 直接跳转到支付页
+    window.location.href = '/pay';
   };
 
   return (
@@ -376,9 +343,8 @@ export default function SignupPage({ onNavigateHome }) {
             className="signup-submit"
             type="button"
             onClick={handleSubmit}
-            disabled={submitting}
           >
-            {submitting ? '提交中...' : '确定'}
+            确定
           </button>
         </section>
       </main>

@@ -1,21 +1,8 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { heroDecor } from '../../landingData';
 import './pay.css';
 
-function IconChevron() {
-  return (
-    <svg aria-hidden="true" viewBox="0 0 24 24">
-      <path
-        d="m5 9 7 7 7-7"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
+const API_BASE = 'http://localhost:3000/api';
 
 function IconLock() {
   return (
@@ -28,6 +15,8 @@ function IconLock() {
 
 export default function PayPage({ onNavigateHome }) {
   const orderInfo = JSON.parse(sessionStorage.getItem('kace_order') || '{}');
+  const [paying, setPaying] = useState(false);
+  const [payMsg, setPayMsg] = useState(null);
 
   useEffect(() => {
     // 刷新回到首页（与 ticket 页逻辑一致）
@@ -37,8 +26,46 @@ export default function PayPage({ onNavigateHome }) {
     }
   }, []);
 
-  const handlePay = () => {
-    alert('支付功能开发中，敬请期待！');
+  const handlePay = async () => {
+    if (!orderInfo.name || !orderInfo.phone) {
+      setPayMsg({ type: 'error', text: '订单信息不完整，请重新报名' });
+      return;
+    }
+
+    setPaying(true);
+    setPayMsg(null);
+
+    try {
+      // 调用接口保存用户报名信息
+      const res = await fetch(`${API_BASE}/users`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: orderInfo.name,
+          company: orderInfo.company,
+          position: orderInfo.position || '',
+          phone: orderInfo.phone,
+          email: '',
+          ticket_type: orderInfo.ticketTitle || '',
+        }),
+      });
+
+      const result = await res.json();
+
+      if (result.code === 0) {
+        setPayMsg({ type: 'success', text: '支付成功！' });
+        setTimeout(() => {
+          window.location.href = '/ticket';
+        }, 1200);
+      } else {
+        setPayMsg({ type: 'error', text: result.message || '支付失败，请重试' });
+      }
+    } catch (err) {
+      console.error('支付失败:', err);
+      setPayMsg({ type: 'error', text: '网络错误，请检查后端服务是否启动' });
+    } finally {
+      setPaying(false);
+    }
   };
 
   return (
@@ -117,9 +144,15 @@ export default function PayPage({ onNavigateHome }) {
           <span>信息安全保护中，支付环境安全可靠</span>
         </div>
 
+        {payMsg && (
+          <div className={`pay-msg pay-msg--${payMsg.type}`}>
+            {payMsg.text}
+          </div>
+        )}
+
         {/* 立即支付按钮 */}
-        <button className="pay-btn" onClick={handlePay} type="button">
-          {orderInfo.price > 0 ? '立即支付' : '确认报名'}
+        <button className="pay-btn" onClick={handlePay} disabled={paying} type="button">
+          {paying ? '处理中...' : orderInfo.price > 0 ? '立即支付' : '确认报名'}
         </button>
       </main>
     </div>

@@ -23,9 +23,10 @@ npm run build
 路由：
 跳转立即报名页面：
 http://localhost:5173/signup
-buy购票页面：
+buy购票报名页面：
 http://localhost:5173/buy
-
+/pay购票支付：
+http://localhost:5173/pay
 支付成功页面：
 http://localhost:5173/ticket
 

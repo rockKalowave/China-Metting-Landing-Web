@@ -12,6 +12,7 @@ import {
 import SignupPage from './pages/signup/SignupPage';
 import BuyPage from './pages/buy/buy';
 import TicketPage from './pages/ticket/TicketPage';
+import PayPage from './pages/pay/PayPage';
 
 function ImageSection({ id, image, alt, children, bleed = false }) {
   return (
@@ -183,6 +184,7 @@ function App() {
   const isSignupPage = currentPath === '/signup';
   const isBuyPage = currentPath === '/buy';
   const isTicketPage = currentPath === '/ticket';
+  const isPayPage = currentPath === '/pay';
 
   useEffect(() => {
     document.title = isSignupPage
@@ -276,6 +278,10 @@ function App() {
 
   if (isBuyPage) {
     return <BuyPage onNavigateHome={() => navigateTo('/')} />;
+  }
+
+  if (isPayPage) {
+    return <PayPage onNavigateHome={() => navigateTo('/')} />;
   }
 
   if (isTicketPage) {

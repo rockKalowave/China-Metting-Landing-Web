@@ -188,9 +188,19 @@ export default function SignupPage({ onNavigateHome }) {
       const result = await res.json();
 
       if (result.code === 0) {
+        // 保存订单信息到 sessionStorage 供支付页读取
+        const selected = signupTickets.find((t) => t.id === selectedTicket);
+        sessionStorage.setItem('kace_order', JSON.stringify({
+          ticketTitle: selected?.title || selectedTicket,
+          name,
+          phone,
+          company,
+          price: selected?.price ?? 0,
+          originalPrice: selected?.originalPrice ?? 0,
+        }));
         setSubmitMsg({ type: 'success', text: result.message || '报名成功！' });
         setTimeout(() => {
-          window.location.href = '/ticket';
+          window.location.href = '/pay';
         }, 1200);
       } else {
         setSubmitMsg({ type: 'error', text: result.message || '报名失败，请重试' });

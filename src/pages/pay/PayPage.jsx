@@ -36,7 +36,59 @@ export default function PayPage({ onNavigateHome }) {
     setPayMsg(null);
 
     try {
-      // 1. 先保存用户报名信息
+      // ====== 免费票种：直接保存用户信息并跳转 ======
+      if (orderInfo.price === 0) {
+        const userRes = await fetch(`${API_BASE}/users`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: orderInfo.name,
+            company: orderInfo.company,
+            position: orderInfo.position || '',
+            phone: orderInfo.phone,
+            email: '',
+            ticket_type: orderInfo.ticketTitle || '',
+          }),
+        });
+
+        const userResult = await userRes.json();
+
+        if (userResult.code !== 0) {
+          setPayMsg({ type: 'error', text: userResult.message || '报名失败，请稍后重试' });
+          return;
+        }
+
+        setPayMsg({ type: 'success', text: '报名成功！' });
+        setTimeout(() => {
+          window.location.href = '/ticket';
+        }, 1200);
+        return;
+      }
+
+      // ====== 付费票种：先调支付接口，成功后再保存用户信息 ======
+      const outTradeNo = `KACE_${orderInfo.phone}_${Date.now()}`;
+      const payRes = await fetch(`${API_BASE}/pay/h5`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          out_trade_no: outTradeNo,
+          total: orderInfo.price,
+          description: `KACE 2026 ${orderInfo.ticketTitle || '展会门票'}`,
+        }),
+      });
+
+      const payResult = await payRes.json();
+
+      // 支付接口调用失败，直接提示错误，不保存用户信息
+      if (payResult.code !== 0 || !payResult.data?.h5_url) {
+        setPayMsg({
+          type: 'error',
+          text: payResult.message || '支付服务暂时不可用，请稍后重试',
+        });
+        return;
+      }
+
+      // 支付下单成功 → 保存用户报名信息
       const userRes = await fetch(`${API_BASE}/users`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -53,45 +105,16 @@ export default function PayPage({ onNavigateHome }) {
       const userResult = await userRes.json();
 
       if (userResult.code !== 0) {
-        setPayMsg({ type: 'error', text: userResult.message || '保存用户信息失败' });
-        return;
+        // 用户信息保存失败但仍跳转支付（订单已在微信侧创建）
+        console.warn('用户信息保存失败但已创建支付订单:', userResult.message);
       }
 
-      // 2. 免费票种直接跳转票夹
-      if (orderInfo.price === 0) {
-        setPayMsg({ type: 'success', text: '报名成功！' });
-        setTimeout(() => {
-          window.location.href = '/ticket';
-        }, 1200);
-        return;
-      }
+      // 跳转到微信支付页面
+      window.location.href = payResult.data.h5_url;
 
-      // 3. 调用微信H5支付接口
-      const outTradeNo = `KACE_${orderInfo.phone}_${Date.now()}`;
-      const payRes = await fetch(`${API_BASE}/pay/h5`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          out_trade_no: outTradeNo,
-          total: orderInfo.price,
-          description: `KACE 2026 ${orderInfo.ticketTitle || '展会门票'}`,
-        }),
-      });
-
-      const payResult = await payRes.json();
-
-      if (payResult.code === 0 && payResult.data?.h5_url) {
-        // 跳转到微信支付页面
-        window.location.href = payResult.data.h5_url;
-      } else {
-        setPayMsg({
-          type: 'error',
-          text: payResult.message || '创建支付订单失败',
-        });
-      }
     } catch (err) {
       console.error('支付异常:', err);
-      setPayMsg({ type: 'error', text: '网络错误，请稍后重试' });
+      setPayMsg({ type: 'error', text: err.message?.includes('ENOENT') ? '支付配置缺失，请联系管理员' : '网络错误，请稍后重试' });
     } finally {
       setPaying(false);
     }

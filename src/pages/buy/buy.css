@@ -3,24 +3,27 @@
   background: #eef3ff;
 }
 
+/* Hero 头图区域 */
 .signup-hero {
+   height: 366px;
+  /* 超出部分隐藏，防止内容溢出 */
+  overflow: hidden;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(180deg, #2d66f6 0%, #2d66f6 100%);
+  background: linear-gradient(180deg, #3b66f7 0%, #2563eb 100%);
   color: #ffffff;
-  padding: 40px 24px 32px;
+  padding: 36px 20px 40px;
 }
 
 .signup-hero__brand {
-  position: relative;
-  z-index: 2;
   display: block;
-  margin: 0 auto;
+  margin: 0 auto 16px;
   border: 0;
   background: transparent;
-  color: #ffffff;
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 800;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
   cursor: pointer;
 }
 
@@ -28,31 +31,33 @@
   position: relative;
   z-index: 2;
   width: min(1120px, 100%);
-  margin: 42px auto 0;
+  margin: 0 auto;
   text-align: center;
 }
 
+/* KACE 2026 + 英文信息 左右排列 */
 .signup-hero__title-wrap {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   gap: clamp(12px, 3vw, 28px);
+  margin-bottom: 8px;
 }
 
 .signup-hero__title {
-  margin: 80px 0 0;
-  font-size: clamp(5.8rem, 16vw, 10rem);
-  line-height: 0.9;
+  margin: 0;
+  font-size: clamp(3.8rem, 11vw, 8rem);
+  line-height: 1;
   font-weight: 300;
-  letter-spacing: -0.06em;
+  letter-spacing: -0.04em;
 }
 
 .signup-hero__title-side {
   text-align: left;
-  font-size: clamp(0.95rem, 2vw, 1.7rem);
-  font-weight: 700;
-  line-height: 1.15;
-  padding-top: 12px;
+  font-size: clamp(0.85rem, 1.8vw, 1.35rem);
+  font-weight: 600;
+  line-height: 1.45;
+  padding-top: 6px;
 }
 
 .signup-hero__title-side p,
@@ -61,47 +66,34 @@
   margin: 0;
 }
 
-.signup-hero__headline {
-  margin-top: 10px;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  gap: 16px;
-}
-
-.signup-hero__year {
-  font-size: clamp(4rem, 12vw, 7rem);
-  line-height: 0.9;
-  font-weight: 300;
-}
-
+/* 中文副标题 独立一行居中 */
 .signup-hero__cn {
-  max-width: 680px;
-  text-align: left;
-  font-size: clamp(2rem, 5vw, 4rem);
-  line-height: 1.08;
-  font-weight: 700;
+  font-size: clamp(1.5rem, 4vw, 2.6rem);
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: 0.02em;
+  margin-bottom: 14px !important;
 }
 
+/* 向下箭头 */
 .signup-hero__scroll {
   display: inline-flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0;
-  margin-top: 28px;
-  color: rgba(255, 255, 255, 0.84);
+  margin-bottom: 10px;
+  color: rgba(255, 255, 255, 0.75);
 }
 
 .signup-hero__scroll svg {
-  width: 32px;
-  height: 32px;
+  width: 26px;
+  height: 26px;
 }
 
+/* 底部时间地点信息 */
 .signup-hero__meta {
-  margin-top: 20px;
-  font-size: clamp(1.05rem, 2.4vw, 1.8rem);
-  font-weight: 700;
+  font-size: clamp(0.9rem, 2vw, 1.25rem);
+  font-weight: 500;
+  opacity: 0.88;
 }
 
 .signup-hero__decor {
@@ -112,15 +104,15 @@
 }
 
 .signup-hero__decor--left {
-  left: -30px;
-  bottom: -14px;
-  width: min(30vw, 220px);
+  left: -20px;
+  bottom: -10px;
+  width: min(26vw, 180px);
 }
 
 .signup-hero__decor--right {
-  right: -24px;
-  top: -18px;
-  width: min(28vw, 210px);
+  right: -16px;
+  top: -12px;
+  width: min(24vw, 170px);
 }
 
 .signup-main {
@@ -404,7 +396,12 @@
 
 @media (max-width: 720px) {
   .signup-hero {
-    padding: 28px 0 24px;
+    padding: 24px 16px 32px;
+  }
+
+  .signup-hero__brand {
+    font-size: 1.2rem;
+    margin-bottom: 12px;
   }
 
   .signup-hero__content,
@@ -413,22 +410,26 @@
   }
 
   .signup-hero__title-wrap {
-    align-items: center;
+    align-items: flex-start;
     gap: 10px;
+  }
+
+  .signup-hero__title {
+    font-size: clamp(3rem, 13vw, 5rem);
   }
 
   .signup-hero__title-side {
-    padding-top: 0;
-    max-width: 145px;
-  }
-
-  .signup-hero__headline {
-    align-items: center;
-    gap: 10px;
+    font-size: 0.78rem;
+    padding-top: 4px;
   }
 
   .signup-hero__cn {
-    max-width: 220px;
+    font-size: clamp(1.15rem, 3.8vw, 1.7rem);
+  }
+
+  .signup-hero__scroll svg {
+    width: 22px;
+    height: 22px;
   }
 
   .signup-main {

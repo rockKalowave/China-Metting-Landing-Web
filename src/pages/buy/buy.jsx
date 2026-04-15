@@ -185,12 +185,12 @@ export default function SignupPage({ onNavigateHome }) {
       <section className="signup-hero">
         <img alt="" aria-hidden="true" className="signup-hero__decor signup-hero__decor--left" src={heroDecor.left} />
         <img alt="" aria-hidden="true" className="signup-hero__decor signup-hero__decor--right" src={heroDecor.right} />
-        <button className="signup-hero__brand" onClick={onNavigateHome} type="button">
-          Kalodata
-        </button>
         <div className="signup-hero__content">
+          <button className="signup-hero__brand" onClick={onNavigateHome} type="button">
+            Kalodata
+          </button>
           <div className="signup-hero__title-wrap">
-            <h1 className="signup-hero__title">KACE</h1>
+            <h1 className="signup-hero__title">KACE<br />2026</h1>
             <div className="signup-hero__title-side">
               <p>2026 Kalodata AI</p>
               <p>Cross-border</p>
@@ -198,12 +198,8 @@ export default function SignupPage({ onNavigateHome }) {
               <p>Expo</p>
             </div>
           </div>
-          <div className="signup-hero__headline">
-            <span className="signup-hero__year">2026</span>
-            <p className="signup-hero__cn">AI赋能跨境电商与海外达人合作展览会</p>
-          </div>
+          <p className="signup-hero__cn">AI赋能跨境电商与<br />海外达人合作展览会</p>
           <div className="signup-hero__scroll">
-            <IconChevron />
             <IconChevron />
           </div>
           <p className="signup-hero__meta">2026年8月4日 ~ 8月5日 ｜ 深圳福田国际会展中心</p>

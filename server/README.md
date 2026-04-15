@@ -35,7 +35,17 @@ npm run dev
 npm start
 ```
 
-服务运行在 `http://localhost:3000`
+### 服务运行在 `http://localhost:3000`
+### 打包
+# 方式1: 直接运行（开发/测试）
+cd d:\security\VSCode\web\server
+node index.js
+
+# 方式2: 使用 pkg 打包成 exe（Windows 部署）
+npx pkg . --targets node18-win-x64 --output kace-server.exe
+
+# 方式3: 部署到 Linux 服务器（需要改 targets）
+npx pkg . --targets node18-linux-x64 --output kace-server
 
 ## API 接口文档
 

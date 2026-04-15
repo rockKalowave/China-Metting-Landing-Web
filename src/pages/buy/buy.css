@@ -484,6 +484,7 @@
     flex: 0 0 calc(100vw - 72px);
     scroll-snap-align: start;
     min-height: 420px;
+    margin-top: 10px;
   }
 
   .signup-ticket__top {

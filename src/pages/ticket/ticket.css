@@ -234,7 +234,9 @@
 
 /* 二维码区域 */
 .ticket-qr-wrap {
-  margin: 0 auto 24px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
 }
 
 .ticket-qr-frame {

@@ -1,4 +1,4 @@
-﻿
+
 
 /* 一级页面导航栏样式 */
 .signup-header {
@@ -101,6 +101,9 @@
 
 .signup-page {
   min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
   background:
     radial-gradient(circle at 50% 40%, rgba(132, 181, 255, 0.22), transparent 32%),
     linear-gradient(180deg, #3f63e6 0%, #2a63f0 100%);
@@ -109,12 +112,17 @@
 
 .signup-hero {
   position: relative;
-  min-height: calc(100vh - 100px);
+  flex: 1;
+  min-height: 100vh;
+  min-height: 100dvh;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 76px 44px 24px;
+  justify-content: flex-start;
+  padding:
+    calc(var(--header-height) + clamp(32px, 5vh, 60px))
+    clamp(20px, 3vw, 44px)
+    clamp(24px, 4vh, 36px);
 }
 
 
@@ -152,6 +160,10 @@
   z-index: 1;
   width: min(1280px, 100%);
   margin: 0 auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   text-align: center;
 }
 
@@ -223,7 +235,8 @@
   position: relative;
   z-index: 1;
   width: min(1680px, 100%);
-  margin: 26px auto 0;
+  margin: auto auto 0;
+  padding-top: clamp(24px, 4vh, 40px);
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 24px;
@@ -257,8 +270,12 @@
 
 @media (max-width: 860px) {
   .signup-hero {
-    min-height: calc(100vh - 132px);
-    padding: 40px 20px 22px;
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding:
+      calc(var(--header-height) + 24px)
+      20px
+      22px;
   }
 
   .signup-hero__title-cn {

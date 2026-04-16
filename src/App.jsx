@@ -1,7 +1,6 @@
 ﻿import { useEffect, useMemo, useRef, useState } from 'react';
 import {
   creatorTrackItems,
-  ctaImages,
   heroDecor,
   heroSlides,
   invitedCreators,
@@ -13,6 +12,9 @@ import SignupPage from './pages/signup/SignupPage';
 import BuyPage from './pages/buy/buy';
 import TicketPage from './pages/ticket/TicketPage';
 import PayPage from './pages/pay/PayPage';
+
+const registerQrImage = encodeURI(`${import.meta.env.BASE_URL}landing/01首屏/register-qr.svg`);
+const SPONSORSHIP_URL = 'https://www.wjx.top/vm/tU5XHKW.aspx#';
 
 function ImageSection({ id, image, alt, children, bleed = false }) {
   return (
@@ -43,7 +45,18 @@ function Marquee({ items, direction = 'left', itemClassName = '' }) {
   );
 }
 
-function HomePage({ activeSection, ctaHovered, navigateTo, scrollToSection, setCtaHovered }) {
+function RegistrationQrCard({ compact = false }) {
+  return (
+    <div className={compact ? 'registration-qr registration-qr--compact' : 'registration-qr'}>
+      <div className="registration-qr__frame">
+        <img src={registerQrImage} alt="KACE 2026 立即报名二维码" />
+      </div>
+      <span className="registration-qr__label">立即报名</span>
+    </div>
+  );
+}
+
+function HomePage({ activeSection, navigateTo, scrollToSection }) {
   return (
     <div className="landing-page">
       <header className="site-header">
@@ -83,11 +96,23 @@ function HomePage({ activeSection, ctaHovered, navigateTo, scrollToSection, setC
               <p className="hero__subtitle hero__subtitle--en">2026 Kalodata AI Cross-border E-commerce &amp; Influencer Expo</p>
               <p className="hero__meta">2026年8月4日 - 8月5日 | 深圳福田国际会展中心</p>
               <div className="hero__actions">
-                <button className="hero__button hero__button--primary" onClick={() => navigateTo('/signup')} type="button">
-                  立即报名
-                </button>
+                <RegistrationQrCard />
               </div>
             </div>
+
+            <aside className="hero-side-panel" aria-label="首屏快捷入口">
+              <RegistrationQrCard compact />
+              <button className="hero-side-panel__button" onClick={() => window.location.href = SPONSORSHIP_URL} type="button">
+                招商合作
+              </button>
+              <button
+                className="hero-side-panel__button hero-side-panel__button--accent"
+                onClick={() => scrollToSection('contact')}
+                type="button"
+              >
+                大会咨询
+              </button>
+            </aside>
 
             <div className="hero__highlights">
               <img alt="KAGGE 首屏四大亮点" src={heroDecor.highlights} />
@@ -145,7 +170,7 @@ function HomePage({ activeSection, ctaHovered, navigateTo, scrollToSection, setC
         <ImageSection id="organizer" image={sectionImages.organizer} alt="主办方介绍板块" />
         <ImageSection id="contact" image={sectionImages.contact} alt="联系我们板块" />
 
-        <section className="content-section content-section--partners">
+        <section className="content-section content-section--partners" id="partners">
           <div className="section-shell">
             <div className="section-title-image section-title-image--compact">
               <img alt="合作伙伴" src={sectionImages.partnersTitle} />
@@ -160,17 +185,6 @@ function HomePage({ activeSection, ctaHovered, navigateTo, scrollToSection, setC
           </div>
         </section>
       </main>
-
-      <button
-        aria-label="立即报名"
-        className="floating-cta"
-        onClick={() => navigateTo('/signup')}
-        onMouseEnter={() => setCtaHovered(true)}
-        onMouseLeave={() => setCtaHovered(false)}
-        type="button"
-      >
-        <img alt="" src={ctaHovered ? ctaImages.hover : ctaImages.default} />
-      </button>
     </div>
   );
 }
@@ -178,8 +192,6 @@ function HomePage({ activeSection, ctaHovered, navigateTo, scrollToSection, setC
 function App() {
   const [currentPath, setCurrentPath] = useState(window.location.pathname || '/');
   const [activeSection, setActiveSection] = useState('home');
-  const [activeSlide, setActiveSlide] = useState(0);
-  const [ctaHovered, setCtaHovered] = useState(false);
   const navSyncTimerRef = useRef(null);
   const isSignupPage = currentPath === '/signup';
   const isBuyPage = currentPath === '/buy';
@@ -205,18 +217,6 @@ function App() {
         window.clearTimeout(navSyncTimerRef.current);
       }
     };
-  }, [isSignupPage]);
-
-  useEffect(() => {
-    if (isSignupPage) {
-      return undefined;
-    }
-
-    const timer = window.setInterval(() => {
-      setActiveSlide((current) => (current + 1) % heroSlides.length);
-    }, 4800);
-
-    return () => window.clearInterval(timer);
   }, [isSignupPage]);
 
   useEffect(() => {
@@ -291,10 +291,8 @@ function App() {
   return (
     <HomePage
       activeSection={activeSection}
-      ctaHovered={ctaHovered}
       navigateTo={navigateTo}
       scrollToSection={scrollToSection}
-      setCtaHovered={setCtaHovered}
     />
   );
 }

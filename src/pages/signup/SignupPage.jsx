@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { heroDecor } from '../../landingData';
+import { toFullPath } from '../../utils/navigation';
 import './signup.css';
 
 const homeNavItems = [
@@ -51,12 +52,12 @@ export default function SignupPage({ onNavigateHome }) {
     const navigationType = navigationEntries[0]?.type;
 
     if (navigationType === 'reload') {
-      window.location.replace('/');
+      window.location.replace(toFullPath('/'));
     }
   }, []);
 
   const navigateHomeSection = (sectionId = '') => {
-    const target = sectionId ? `/#${sectionId}` : '/';
+    const target = sectionId ? toFullPath(`/#${sectionId}`) : toFullPath('/');
     window.location.assign(target);
   };
 

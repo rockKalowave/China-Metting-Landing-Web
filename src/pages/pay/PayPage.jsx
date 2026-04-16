@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { heroDecor } from '../../landingData';
+import { toFullPath } from '../../utils/navigation';
 import './pay.css';
 
 const API_BASE = 'http://localhost:3000/api';
@@ -23,7 +24,7 @@ export default function PayPage({ onNavigateHome }) {
     // 刷新回到首页（与 ticket 页逻辑一致）
     const navType = performance.getEntriesByType('navigation')[0]?.type;
     if (navType === 'reload') {
-      window.location.href = '/';
+      window.location.href = toFullPath('/');
     }
   }, []);
 
@@ -61,7 +62,7 @@ export default function PayPage({ onNavigateHome }) {
 
         setPayMsg({ type: 'success', text: '报名成功！' });
         setTimeout(() => {
-          window.location.href = '/ticket';
+          window.location.href = toFullPath('/ticket');
         }, 1200);
         return;
       }

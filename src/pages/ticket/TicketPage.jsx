@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { heroDecor } from '../../landingData';
+import { toFullPath } from '../../utils/navigation';
 import './ticket.css';
 
 const qrCodeUrl =
@@ -32,7 +33,7 @@ export default function TicketPage() {
     const navigationType = navigationEntries[0]?.type;
 
     if (navigationType === 'reload') {
-      window.location.replace('/');
+      window.location.replace(toFullPath('/'));
     }
   }, []);
 

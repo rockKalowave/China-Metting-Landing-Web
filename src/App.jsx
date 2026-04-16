@@ -13,6 +13,8 @@ import BuyPage from './pages/buy/buy';
 import TicketPage from './pages/ticket/TicketPage';
 import PayPage from './pages/pay/PayPage';
 
+import { getRelativePath, toFullPath } from './utils/navigation';
+
 const registerQrImage = encodeURI(`${import.meta.env.BASE_URL}landing/01首屏/register-qr.svg`);
 const SPONSORSHIP_URL = 'https://www.wjx.top/vm/tU5XHKW.aspx#';
 
@@ -190,7 +192,7 @@ function HomePage({ activeSection, navigateTo, scrollToSection }) {
 }
 
 function App() {
-  const [currentPath, setCurrentPath] = useState(window.location.pathname || '/');
+  const [currentPath, setCurrentPath] = useState(() => getRelativePath(window.location.pathname));
   const [activeSection, setActiveSection] = useState('home');
   const navSyncTimerRef = useRef(null);
   const isSignupPage = currentPath === '/signup';
@@ -205,7 +207,7 @@ function App() {
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
 
     const handlePopState = () => {
-      setCurrentPath(window.location.pathname || '/');
+      setCurrentPath(getRelativePath(window.location.pathname));
       window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
     };
 
@@ -249,8 +251,9 @@ function App() {
   }, [isSignupPage]);
 
   const navigateTo = (path) => {
-    if (window.location.pathname !== path) {
-      window.history.pushState({}, '', path);
+    const fullPath = toFullPath(path);
+    if (window.location.pathname !== fullPath) {
+      window.history.pushState({}, '', fullPath);
     }
 
     setCurrentPath(path);

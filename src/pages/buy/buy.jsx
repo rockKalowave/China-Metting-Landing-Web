@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
 import { heroDecor } from '../../landingData';
+import { toFullPath } from '../../utils/navigation';
 import './buy.css';
 
 const identityOptions = ['设计师', '品牌方', '跨境卖家', '服务商', '达人 / MCN'];
@@ -263,7 +264,7 @@ export default function BuyPage({ onNavigateHome }) {
       }),
     );
 
-    window.location.href = '/pay';
+    window.location.href = toFullPath('/pay');
   };
 
   const handleBack = () => {
@@ -277,7 +278,7 @@ export default function BuyPage({ onNavigateHome }) {
       return;
     }
 
-    window.location.href = '/';
+    window.location.href = toFullPath('/');
   };
 
   return (

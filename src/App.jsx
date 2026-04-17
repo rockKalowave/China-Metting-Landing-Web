@@ -12,6 +12,7 @@ import SignupPage from './pages/signup/SignupPage';
 import BuyPage from './pages/buy/buy';
 import TicketPage from './pages/ticket/TicketPage';
 import PayPage from './pages/pay/PayPage';
+import { getRelativePath, toFullPath } from './utils/navigation';
 
 const registerQrImage = encodeURI(`${import.meta.env.BASE_URL}landing/01首屏/register-qr.svg`);
 const SPONSORSHIP_URL = 'https://www.wjx.top/vm/tU5XHKW.aspx#';

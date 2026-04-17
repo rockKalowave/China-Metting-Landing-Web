@@ -1,16 +1,13 @@
 const asset = (relativePath) => encodeURI(`${import.meta.env.BASE_URL}landing/${relativePath}`);
 
 export const navItems = [
-  { id: 'home', label: '首页' },
-  { id: 'industry', label: '行业首创' },
-  { id: 'design', label: '大会设计' },
-  { id: 'values', label: '核心价值' },
-  { id: 'highlights', label: '展会亮点' },
+  { id: 'home', label: '大会介绍' },
   { id: 'content', label: '展会内容' },
+  { id: 'highlights', label: '展会亮点' },
+  { id: 'industry', label: '行业首创' },
+  { id: 'values', label: '核心价值' },
+  { id: 'creators', label: '拟邀达人' },
   { id: 'audience', label: '用户画像' },
-  { id: 'creators', label: '拟邀请达人' },
-  { id: 'review', label: '往期回顾' },
-  { id: 'organizer', label: '主办方介绍' },
   { id: 'contact', label: '联系我们' },
 ];
 

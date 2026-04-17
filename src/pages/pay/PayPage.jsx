@@ -15,6 +15,7 @@ function IconLock() {
 
 export default function PayPage({ onNavigateHome }) {
   const orderInfo = JSON.parse(sessionStorage.getItem('kace_order') || '{}');
+  const phoneDisplay = orderInfo.areaCode && orderInfo.phone ? `${orderInfo.areaCode} ${orderInfo.phone}` : orderInfo.phone || '-';
   const [paying, setPaying] = useState(false);
   const [payMsg, setPayMsg] = useState(null);
 
@@ -162,7 +163,7 @@ export default function PayPage({ onNavigateHome }) {
             </div>
             <div className="pay-info__row">
               <span className="pay-info__label">手机号</span>
-              <span className="pay-info__value">{orderInfo.phone || '-'}</span>
+              <span className="pay-info__value">{phoneDisplay}</span>
             </div>
             <div className="pay-info__row">
               <span className="pay-info__label">公司/品牌</span>

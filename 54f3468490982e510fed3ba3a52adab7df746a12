@@ -1,0 +1,14 @@
+src/App.jsx
+  h_b2be70cfc5404d 15
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.0",
+  "base_commit_sha": "54f3468490982e510fed3ba3a52adab7df746a12",
+  "prompts": {},
+  "humans": {
+    "h_b2be70cfc5404d": {
+      "author": "佳伟"
+    }
+  }
+}

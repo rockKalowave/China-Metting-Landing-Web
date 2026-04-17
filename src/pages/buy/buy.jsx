@@ -264,7 +264,7 @@ export default function BuyPage({ onNavigateHome }) {
       }),
     );
 
-    window.location.href = toFullPath('/pay');
+    window.location.href = '/pay';
   };
 
   const handleBack = () => {
@@ -278,7 +278,7 @@ export default function BuyPage({ onNavigateHome }) {
       return;
     }
 
-    window.location.href = toFullPath('/');
+    window.location.href = '/';
   };
 
   return (

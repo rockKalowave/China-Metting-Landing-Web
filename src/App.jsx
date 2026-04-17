@@ -12,7 +12,6 @@ import SignupPage from './pages/signup/SignupPage';
 import BuyPage from './pages/buy/buy';
 import TicketPage from './pages/ticket/TicketPage';
 import PayPage from './pages/pay/PayPage';
-
 import { getRelativePath, toFullPath } from './utils/navigation';
 
 const registerQrImage = encodeURI(`${import.meta.env.BASE_URL}landing/01首屏/register-qr.svg`);
@@ -58,7 +57,7 @@ function RegistrationQrCard({ compact = false }) {
   );
 }
 
-function HomePage({ activeSection, navigateTo, scrollToSection }) {
+function HomePage({ activeSection, scrollToSection }) {
   return (
     <div className="landing-page">
       <header className="site-header">
@@ -79,9 +78,6 @@ function HomePage({ activeSection, navigateTo, scrollToSection }) {
               </button>
             ))}
           </nav>
-          <button className="site-header__cta" onClick={() => navigateTo('/signup')} type="button">
-            立即报名
-          </button>
         </div>
       </header>
 
@@ -195,6 +191,8 @@ function App() {
   const [currentPath, setCurrentPath] = useState(() => getRelativePath(window.location.pathname));
   const [activeSection, setActiveSection] = useState('home');
   const navSyncTimerRef = useRef(null);
+  const navOverrideRef = useRef(null);
+  const navOverrideTimerRef = useRef(null);
   const isSignupPage = currentPath === '/signup';
   const isBuyPage = currentPath === '/buy';
   const isTicketPage = currentPath === '/ticket';
@@ -218,6 +216,9 @@ function App() {
       if (navSyncTimerRef.current) {
         window.clearTimeout(navSyncTimerRef.current);
       }
+      if (navOverrideTimerRef.current) {
+        window.clearTimeout(navOverrideTimerRef.current);
+      }
     };
   }, [isSignupPage]);
 
@@ -227,6 +228,23 @@ function App() {
     }
 
     const updateActiveSection = () => {
+      if (navOverrideRef.current) {
+        const targetElement = document.getElementById(navOverrideRef.current);
+
+        if (!targetElement) {
+          navOverrideRef.current = null;
+        } else {
+          const targetTop = targetElement.getBoundingClientRect().top;
+
+          if (Math.abs(targetTop) > 96) {
+            setActiveSection(navOverrideRef.current);
+            return;
+          }
+
+          navOverrideRef.current = null;
+        }
+      }
+
       const currentMarker = window.scrollY + 180;
       let currentSection = 'home';
 
@@ -266,10 +284,18 @@ function App() {
       if (navSyncTimerRef.current) {
         window.clearTimeout(navSyncTimerRef.current);
       }
+      if (navOverrideTimerRef.current) {
+        window.clearTimeout(navOverrideTimerRef.current);
+      }
 
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      navOverrideRef.current = sectionId;
       setActiveSection(sectionId);
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      navOverrideTimerRef.current = window.setTimeout(() => {
+        navOverrideRef.current = null;
+      }, 900);
       navSyncTimerRef.current = window.setTimeout(() => {
+        navOverrideRef.current = null;
         setActiveSection(sectionId);
       }, 720);
     }
@@ -294,7 +320,6 @@ function App() {
   return (
     <HomePage
       activeSection={activeSection}
-      navigateTo={navigateTo}
       scrollToSection={scrollToSection}
     />
   );

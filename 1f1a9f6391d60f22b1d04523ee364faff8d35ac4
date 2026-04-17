@@ -1,0 +1,23 @@
+vite.config.js
+  359a13ff38241138 5
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.0",
+  "base_commit_sha": "1f1a9f6391d60f22b1d04523ee364faff8d35ac4",
+  "prompts": {
+    "359a13ff38241138": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "a67684cd-fe3a-4c57-a915-73d3b921abec",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "佳伟",
+      "messages": [],
+      "total_additions": 2,
+      "total_deletions": 2,
+      "accepted_lines": 1,
+      "overriden_lines": 0
+    }
+  }
+}

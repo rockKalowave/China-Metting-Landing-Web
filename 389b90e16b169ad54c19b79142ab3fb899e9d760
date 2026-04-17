@@ -1,0 +1,42 @@
+dist/index.html
+  3218edc4327f97f7 1-17
+src/pages/buy/buy.jsx
+  h_b2be70cfc5404d 267,281
+src/landingData.js
+  3218edc4327f97f7 4-6,9
+dist/assets/index-BcdfEkBQ.css
+  3218edc4327f97f7 1
+dist/landing/01首屏/register-qr.svg
+  3218edc4327f97f7 1-47
+src/App.jsx
+  h_b2be70cfc5404d 59,193-194,218-220,230-246,286-288,290,292-295,297
+src/styles.css
+  3218edc4327f97f7 11-12,61-70,74,77-87,93,95-97,100,105,109,111,115-116,119-120,122-123,138-140,142-144,146-147,156,160-162,174,178,209,214,749,757-764,771-781,818
+dist/assets/index-BNa2gIz_.js
+  3218edc4327f97f7 1-9
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.0",
+  "base_commit_sha": "389b90e16b169ad54c19b79142ab3fb899e9d760",
+  "prompts": {
+    "3218edc4327f97f7": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "791ce345-a7ac-4c71-a7f5-794ff3e50af4",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "佳伟",
+      "messages": [],
+      "total_additions": 154,
+      "total_deletions": 65,
+      "accepted_lines": 154,
+      "overriden_lines": 0
+    }
+  },
+  "humans": {
+    "h_b2be70cfc5404d": {
+      "author": "佳伟"
+    }
+  }
+}

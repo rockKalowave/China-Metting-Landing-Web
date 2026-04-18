@@ -14,7 +14,7 @@ import TicketPage from './pages/ticket/TicketPage';
 import PayPage from './pages/pay/PayPage';
 import { getRelativePath, toFullPath } from './utils/navigation';
 
-const registerQrImage = encodeURI(`${import.meta.env.BASE_URL}landing/01首屏/register-qr.svg`);
+const registerQrImage = 'https://d149xzut2sq6e3.cloudfront.net/upload/d4d2b9b3.png';
 const SPONSORSHIP_URL = 'https://www.wjx.top/vm/tU5XHKW.aspx#';
 
 function ImageSection({ id, image, alt, children, bleed = false }) {

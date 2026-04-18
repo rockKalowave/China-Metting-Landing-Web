@@ -1,7 +1,7 @@
 const asset = (relativePath) => encodeURI(`${import.meta.env.BASE_URL}landing/${relativePath}`);
 
 export const navItems = [
-  { id: 'home', label: '大会介绍' },
+  { id: 'about', label: '大会介绍' },
   { id: 'content', label: '展会内容' },
   { id: 'highlights', label: '展会亮点' },
   { id: 'industry', label: '行业首创' },
@@ -23,10 +23,11 @@ export const heroDecor = {
   highlights: asset('01首屏/首屏四大亮点.png'),
   left: asset('01首屏/视觉元素 左.png'),
   right: asset('01首屏/视觉元素 右.png'),
-  background: asset('01首屏/固定栏-报名前.png'),
+  background: asset('01首屏/首屏底图.jpg'),
 };
 
 export const sectionImages = {
+  about: asset('about/about-full.jpg'),
   industry: asset('行业首创/行业首创 - 整图.jpg'),
   expoDesign: asset('大会设计/大会设计.jpg'),
   expoDesignReference: asset('大会设计/20.jpg'),
@@ -38,7 +39,6 @@ export const sectionImages = {
   organizer: asset('主办方介绍.jpg'),
   contact: asset('联系我们 - 整图.jpg'),
   creatorsTitle: asset('拟邀请达人/拟邀请达人.svg'),
-  partnersTitle: asset('合作伙伴.svg'),
 };
 
 export const ctaImages = {
@@ -76,12 +76,7 @@ export const creatorTrackItems = [
   asset('行业首创/达人 - 向右轮播/Group 29.png'),
 ];
 
-export const invitedCreators = [
-  asset('拟邀请达人/1.png'),
-  asset('拟邀请达人/Group 68.png'),
-  asset('拟邀请达人/Group 69.png'),
-  asset('拟邀请达人/Group 74.png'),
-  asset('拟邀请达人/Group 75.png'),
-  asset('拟邀请达人/Group 78.png'),
-  asset('拟邀请达人/Group 79.png'),
+export const creatorPages = [
+  asset('拟邀请达人/达人第一页.png'),
+  asset('拟邀请达人/达人第二页.png'),
 ];

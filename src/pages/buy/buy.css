@@ -22,8 +22,6 @@
   justify-content: center;
   width: 50px;
   height: 50px;
-  border: 2px solid rgba(255, 255, 255, 0.78);
-  border-radius: 12px;
   background: transparent;
   color: #ffffff;
   cursor: pointer;
@@ -186,8 +184,6 @@
   display: flex;
   align-items: center;
   min-height: 62px;
-  border: 2px solid #2d66f6;
-  border-radius: 16px;
   background: #ffffff;
   box-shadow: 0 10px 24px rgba(45, 102, 246, 0.05);
 }
@@ -196,7 +192,6 @@
 .buy-input select,
 .buy-phone input {
   width: 100%;
-  border: 0;
   background: transparent;
   color: #2d66f6;
   font-size: 1rem;
@@ -243,7 +238,6 @@
   justify-content: center;
   width: 82px;
   min-height: 62px;
-  border-right: 2px solid #2d66f6;
   color: #2d66f6;
   font-size: 1rem;
   font-weight: 700;
@@ -262,7 +256,6 @@
 .buy-progress-dots__dot {
   width: 10px;
   height: 10px;
-  border-radius: 999px;
   background: rgba(45, 102, 246, 0.35);
 }
 
@@ -284,19 +277,15 @@
 .buy-ticket {
   text-align: left;
   padding: 20px 18px 22px;
-  border: 2px solid rgba(45, 102, 246, 0.12);
-  border-radius: 18px;
   background: #ffffff;
   box-shadow: 0 18px 40px rgba(45, 102, 246, 0.06);
   cursor: pointer;
   transition:
     transform 160ms ease,
-    border-color 160ms ease,
     box-shadow 160ms ease;
 }
 
 .buy-ticket--active {
-  border-color: #2d66f6;
   box-shadow: 0 22px 44px rgba(45, 102, 246, 0.12);
   transform: translateY(-2px);
 }
@@ -323,7 +312,6 @@
 .buy-ticket__original {
   align-self: flex-start;
   padding: 5px 10px;
-  border-radius: 999px;
   background: #eef3ff;
   color: #6f8de6;
   font-size: 0.8rem;
@@ -333,7 +321,6 @@
 .buy-ticket__status {
   align-self: flex-start;
   padding: 5px 10px;
-  border-radius: 999px;
   background: #fff3de;
   color: #ff9c00;
   font-size: 0.8rem;
@@ -386,7 +373,6 @@
 }
 
 .buy-ticket--disabled {
-  border-color: rgba(45, 102, 246, 0.12);
   box-shadow: 0 12px 28px rgba(45, 102, 246, 0.04);
   cursor: not-allowed;
   opacity: 0.78;
@@ -395,7 +381,6 @@
 
 .buy-msg {
   padding: 14px 16px;
-  border-radius: 14px;
   font-size: 0.95rem;
   font-weight: 700;
   text-align: center;
@@ -414,8 +399,6 @@
 .buy-submit {
   width: 100%;
   min-height: 68px;
-  border: 0;
-  border-radius: 18px;
   background: linear-gradient(180deg, #336cf6 0%, #2d66f6 100%);
   color: #ffffff;
   font-size: 1.15rem;

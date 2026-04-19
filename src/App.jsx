@@ -16,6 +16,7 @@ import PayPage from './pages/pay/PayPage';
 import { getRelativePath, toFullPath } from './utils/navigation';
 
 const SPONSORSHIP_URL = 'https://www.wjx.top/vm/tU5XHKW.aspx#';
+const CORE_VALUES_IMAGE = encodeURI(`${import.meta.env.BASE_URL}landing/核心价值 - 整图.jpg`);
 
 function ImageSection({ id, image, alt, children, bleed = false, plain = false }) {
   return (
@@ -30,9 +31,9 @@ function ImageSection({ id, image, alt, children, bleed = false, plain = false }
   );
 }
 
-function BrandMatrixSection() {
+function BrandMatrixSection({ id }) {
   return (
-    <section aria-label="核心价值板块" className="content-section" id="values">
+    <section aria-label="核心价值板块" className="content-section" id={id}>
       <div className="section-shell">
         <div className="brand-matrix" style={{ '--brand-matrix-bg': `url(${sectionImages.values})` }}>
           <div className="brand-matrix__overlay">
@@ -51,11 +52,19 @@ function Marquee({ items, direction = 'left', itemClassName = '' }) {
   return (
     <div className="marquee">
       <div className={`marquee__track marquee__track--${direction}`}>
-        {trackItems.map((item, index) => (
-          <div className={`marquee__item ${itemClassName}`.trim()} key={`${direction}-${index}`}>
+        {trackItems.map((item, index) => {
+          const assetName = decodeURIComponent(item.split('/').pop() ?? '');
+
+          return (
+          <div
+            className={`marquee__item ${itemClassName}`.trim()}
+            data-asset={assetName}
+            key={`${direction}-${index}`}
+          >
             <img src={item} alt="" />
           </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
@@ -139,12 +148,10 @@ function HomePage({ activeSection, scrollToSection }) {
         <ImageSection id="highlights" image={sectionImages.highlights} alt="展会亮点板块" />
         <ImageSection id="industry" image={sectionImages.industry} alt="行业首创板块" />
         <BrandMatrixSection />
+        <ImageSection id="values" image={CORE_VALUES_IMAGE} alt="核心价值板块" />
 
-        <section className="content-section" id="creators">
-          <div className="section-shell">
-            <div className="section-title-image section-title-image--creators">
-              <img alt="拟邀达人" src={sectionImages.creatorsTitle} />
-            </div>
+        <section className="content-section creators-section" id="creators">
+          <div className="section-shell creators-section__shell">
             <div className="creator-pages">
               <article className="creator-page">
                 <img alt={`拟邀达人第 ${activeCreatorPage + 1} 页`} src={creatorPages[activeCreatorPage]} />
@@ -187,6 +194,18 @@ function App() {
   const isBuyPage = currentPath === '/buy';
   const isTicketPage = currentPath === '/ticket';
   const isPayPage = currentPath === '/pay';
+
+  useEffect(() => {
+    const preventNativeDrag = (event) => {
+      event.preventDefault();
+    };
+
+    document.addEventListener('dragstart', preventNativeDrag);
+
+    return () => {
+      document.removeEventListener('dragstart', preventNativeDrag);
+    };
+  }, []);
 
   useEffect(() => {
     document.title = isSignupPage

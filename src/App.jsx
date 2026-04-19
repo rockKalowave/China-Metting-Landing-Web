@@ -185,6 +185,7 @@ function App() {
   const [activeSection, setActiveSection] = useState(navItems[0].id);
   const navOverrideRef = useRef(null);
   const navTargetYRef = useRef(null);
+  const navOverrideTimerRef = useRef(null);
   const isSignupPage = currentPath === '/signup';
   const isBuyPage = currentPath === '/buy';
   const isTicketPage = currentPath === '/ticket';

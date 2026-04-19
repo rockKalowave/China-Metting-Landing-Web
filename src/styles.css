@@ -83,6 +83,7 @@ img {
 .site-header__inner::after {
   content: '';
   min-width: 304px;
+  pointer-events: none;
 }
 
 .site-brand {

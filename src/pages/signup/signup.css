@@ -25,7 +25,6 @@
   gap: 12px;
   flex-shrink: 0;
   padding: 0;
-  border: 0;
   background: transparent;
   color: #ffffff;
   cursor: pointer;
@@ -60,18 +59,11 @@
 .signup-header__link {
   flex-shrink: 0;
   padding: 10px 16px;
-  border-radius: 999px;
   background: transparent;
   color: rgba(240, 245, 255, 0.9);
   font-size: 0.95rem;
   font-weight: 700;
-  border: 0;
   cursor: pointer;
-  transition: background-color 160ms ease, color 160ms ease, box-shadow 160ms ease;
-}
-
-.signup-header__link:hover {
-  color: #ffffff;
 }
 
 .signup-header__link--active {
@@ -80,23 +72,13 @@
   box-shadow: 0 12px 28px rgba(7, 34, 115, 0.16);
 }
 
-.signup-header__link--active:hover {
-  color: var(--primary);
-}
-
 .signup-header__cta {
   flex-shrink: 0;
   padding: 12px 20px;
-  border-radius: 999px;
   background: rgba(255, 255, 255, 0.14);
   color: #ffffff;
   font-weight: 700;
-  border: 0;
   cursor: pointer;
-}
-
-.signup-header__cta:hover {
-  background: rgba(255, 255, 255, 0.22);
 }
 
 .signup-page {
@@ -217,8 +199,6 @@
   width: min(23vw, 340px);
   aspect-ratio: 1;
   padding: 18px;
-  border-radius: 22px;
-  border: 2px solid rgba(255, 255, 255, 0.48);
   background: rgba(255, 255, 255, 0.06);
   box-shadow: 0 24px 60px rgba(13, 44, 135, 0.18);
 }
@@ -226,7 +206,6 @@
 .signup-hero__qr {
   width: 100%;
   height: 100%;
-  border-radius: 12px;
   object-fit: cover;
   background: #ffffff;
 }
@@ -327,7 +306,6 @@
   .signup-hero__qr-frame {
     width: min(78vw, 280px);
     padding: 14px;
-    border-radius: 18px;
   }
 
   .signup-hero__decor--left {

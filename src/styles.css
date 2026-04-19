@@ -292,6 +292,8 @@ img {
 .registration-qr__asset {
   width: 100%;
   height: auto;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 .registration-qr--compact {

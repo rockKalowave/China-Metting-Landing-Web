@@ -1,0 +1,14 @@
+dist/index.html
+  h_b2be70cfc5404d 9,11-12
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.0",
+  "base_commit_sha": "17820783bce94e71c669af966aecac32266f6d5f",
+  "prompts": {},
+  "humans": {
+    "h_b2be70cfc5404d": {
+      "author": "佳伟"
+    }
+  }
+}

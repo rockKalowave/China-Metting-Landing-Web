@@ -15,6 +15,7 @@ import TicketPage from './pages/ticket/TicketPage';
 import PayPage from './pages/pay/PayPage';
 import { getRelativePath, toFullPath } from './utils/navigation';
 
+const registerQrImage = 'https://d149xzut2sq6e3.cloudfront.net/upload/d4d2b9b3.png';
 const SPONSORSHIP_URL = 'https://www.wjx.top/vm/tU5XHKW.aspx#';
 const CORE_VALUES_IMAGE = encodeURI(`${import.meta.env.BASE_URL}landing/核心价值 - 整图.jpg`);
 
@@ -73,7 +74,7 @@ function Marquee({ items, direction = 'left', itemClassName = '' }) {
 function RegistrationQrCard({ compact = false }) {
   return (
     <div className={compact ? 'registration-qr registration-qr--compact' : 'registration-qr'}>
-      <img className="registration-qr__asset" src={sideButtonImages.register} alt="KACE 2026 立即报名二维码" />
+      <img className="registration-qr__asset" src={registerQrImage} alt="KACE 2026 立即报名二维码" />
     </div>
   );
 }
@@ -186,7 +187,7 @@ function HomePage({ activeSection, scrollToSection }) {
 }
 
 function App() {
-  const [currentPath, setCurrentPath] = useState(() => getRelativePath(window.location.pathname));
+  const [currentPath, setCurrentPath] = useState(window.location.pathname || '/');
   const [activeSection, setActiveSection] = useState(navItems[0].id);
   const navOverrideRef = useRef(null);
   const navTargetYRef = useRef(null);
@@ -241,8 +242,14 @@ function App() {
         navOverrideRef.current = null;
         navTargetYRef.current = null;
       } else if (navOverrideRef.current) {
-        navOverrideRef.current = null;
-        navTargetYRef.current = null;
+        const targetElement = document.getElementById(navOverrideRef.current);
+        if (!targetElement) {
+          navOverrideRef.current = null;
+          navTargetYRef.current = null;
+        } else {
+          navOverrideRef.current = null;
+          navTargetYRef.current = null;
+        }
       }
 
       const currentMarker = window.scrollY + 180;

@@ -1,14 +1,14 @@
 const asset = (relativePath) => encodeURI(`${import.meta.env.BASE_URL}landing/${relativePath}`);
 
 export const navItems = [
-  { id: 'about', label: '澶т細浠嬬粛' },
-  { id: 'content', label: '灞曚細鍐呭' },
-  { id: 'highlights', label: '灞曚細浜偣' },
-  { id: 'industry', label: '琛屼笟棣栧垱' },
-  { id: 'values', label: '鏍稿績浠峰€?' },
-  { id: 'creators', label: '鎷熼個杈句汉' },
-  { id: 'audience', label: '鐢ㄦ埛鐢诲儚' },
-  { id: 'contact', label: '鑱旂郴鎴戜滑' },
+  { id: 'about', label: '大会介绍' },
+  { id: 'content', label: '展会内容' },
+  { id: 'highlights', label: '展会亮点' },
+  { id: 'industry', label: '行业首创' },
+  { id: 'values', label: '核心价值' },
+  { id: 'creators', label: '拟邀达人' },
+  { id: 'audience', label: '用户画像' },
+  { id: 'contact', label: '联系我们' },
 ];
 
 export const heroSlides = [

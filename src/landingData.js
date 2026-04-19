@@ -31,7 +31,7 @@ export const sectionImages = {
   industry: asset('行业首创/行业首创 - 整图.jpg'),
   expoDesign: asset('大会设计/大会设计.jpg'),
   expoDesignReference: asset('大会设计/20.jpg'),
-  values: asset('核心价值 - 整图.jpg'),
+  values: asset('品牌机构与达人.jpg'),
   highlights: asset('展会亮点/展会亮点 - 整图.jpg'),
   content: asset('展会内容/展会内容 - 整图.jpg'),
   audience: asset('用户画像 - 整图.jpg'),
@@ -44,6 +44,14 @@ export const sectionImages = {
 export const ctaImages = {
   default: asset('立即报名/默认.svg'),
   hover: asset('立即报名/点击.svg'),
+};
+
+export const sideButtonImages = {
+  register: asset('右侧按钮/立即报名.svg'),
+  sponsor: asset('右侧按钮/招商合作.svg'),
+  sponsorHover: asset('右侧按钮/招商合作(悬浮状态）.svg'),
+  consult: asset('右侧按钮/大会咨询.svg'),
+  consultHover: asset('右侧按钮/大会咨询(悬浮状态）.svg'),
 };
 
 export const logoItems = [

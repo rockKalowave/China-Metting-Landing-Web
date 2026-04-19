@@ -7,13 +7,13 @@ import {
   logoItems,
   navItems,
   sectionImages,
+  sideButtonImages,
 } from './landingData';
 import SignupPage from './pages/signup/SignupPage';
 import BuyPage from './pages/buy/buy';
 import TicketPage from './pages/ticket/TicketPage';
 import PayPage from './pages/pay/PayPage';
 
-const registerQrImage = encodeURI(`${import.meta.env.BASE_URL}landing/01首屏/register-qr-center.png`);
 const SPONSORSHIP_URL = 'https://www.wjx.top/vm/tU5XHKW.aspx#';
 
 function ImageSection({ id, image, alt, children, bleed = false, plain = false }) {
@@ -24,6 +24,21 @@ function ImageSection({ id, image, alt, children, bleed = false, plain = false }
           <img className="section-image" src={image} alt={alt} />
         </div>
         {children}
+      </div>
+    </section>
+  );
+}
+
+function BrandMatrixSection() {
+  return (
+    <section aria-label="核心价值板块" className="content-section" id="values">
+      <div className="section-shell">
+        <div className="brand-matrix" style={{ '--brand-matrix-bg': `url(${sectionImages.values})` }}>
+          <div className="brand-matrix__overlay">
+            <Marquee itemClassName="marquee__item--logo" items={logoItems} />
+            <Marquee direction="right" itemClassName="marquee__item--creator" items={creatorTrackItems} />
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -48,11 +63,17 @@ function Marquee({ items, direction = 'left', itemClassName = '' }) {
 function RegistrationQrCard({ compact = false }) {
   return (
     <div className={compact ? 'registration-qr registration-qr--compact' : 'registration-qr'}>
-      <div className="registration-qr__frame">
-        <img src={registerQrImage} alt="KACE 2026 立即报名二维码" />
-      </div>
-      <span className="registration-qr__label">立即报名</span>
+      <img className="registration-qr__asset" src={sideButtonImages.register} alt="KACE 2026 立即报名二维码" />
     </div>
+  );
+}
+
+function SidePanelActionButton({ defaultSrc, hoverSrc, alt, onClick }) {
+  return (
+    <button className="hero-side-panel__asset-button" onClick={onClick} type="button">
+      <img className="hero-side-panel__asset hero-side-panel__asset--default" src={defaultSrc} alt={alt} />
+      <img className="hero-side-panel__asset hero-side-panel__asset--hover" src={hoverSrc} alt="" aria-hidden="true" />
+    </button>
   );
 }
 
@@ -88,16 +109,18 @@ function HomePage({ activeSection, scrollToSection }) {
           <div className="section-shell hero__shell">
             <aside className="hero-side-panel" aria-label="首屏快捷入口">
               <RegistrationQrCard compact />
-              <button className="hero-side-panel__button" onClick={() => window.location.href = SPONSORSHIP_URL} type="button">
-                招商合作
-              </button>
-              <button
-                className="hero-side-panel__button hero-side-panel__button--accent"
+              <SidePanelActionButton
+                alt="招商合作"
+                defaultSrc={sideButtonImages.sponsor}
+                hoverSrc={sideButtonImages.sponsorHover}
+                onClick={() => window.location.href = SPONSORSHIP_URL}
+              />
+              <SidePanelActionButton
+                alt="大会咨询"
+                defaultSrc={sideButtonImages.consult}
+                hoverSrc={sideButtonImages.consultHover}
                 onClick={() => scrollToSection('contact')}
-                type="button"
-              >
-                大会咨询
-              </button>
+              />
             </aside>
 
             <div className="expo-showcase">
@@ -114,19 +137,8 @@ function HomePage({ activeSection, scrollToSection }) {
         <ImageSection id="content" image={sectionImages.content} alt="展会内容板块" />
         <ImageSection id="highlights" image={sectionImages.highlights} alt="展会亮点板块" />
 
-        <ImageSection id="industry" image={sectionImages.industry} alt="行业首创板块">
-          <div className="section-appendix">
-            <div className="appendix-copy">
-              <p className="appendix-copy__eyebrow">Global Brand &amp; Creator Matrix</p>
-              <h2 className="appendix-copy__title">全球品牌与达人矩阵</h2>
-              <p className="appendix-copy__text">联动头部品牌、平台、机构与达人资源，以滚动展陈的方式强化“全球共创”的现场势能。</p>
-            </div>
-            <Marquee itemClassName="marquee__item--logo" items={logoItems} />
-            <Marquee direction="right" itemClassName="marquee__item--creator" items={creatorTrackItems} />
-          </div>
-        </ImageSection>
-
-        <ImageSection id="values" image={sectionImages.values} alt="核心价值板块" />
+        <ImageSection id="industry" image={sectionImages.industry} alt="行业首创板块" />
+        <BrandMatrixSection />
 
         <section className="content-section" id="creators">
           <div className="section-shell">

@@ -1,0 +1,23 @@
+src/styles.css
+  e67b652ebc6044ad 86
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.0",
+  "base_commit_sha": "3f701b12734177228d7a465e649dd4ac21b1b5e8",
+  "prompts": {
+    "e67b652ebc6044ad": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "0fbcaf3c-12a6-4fe6-bade-46d81dd4a8db",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "佳伟",
+      "messages": [],
+      "total_additions": 1,
+      "total_deletions": 0,
+      "accepted_lines": 1,
+      "overriden_lines": 0
+    }
+  }
+}

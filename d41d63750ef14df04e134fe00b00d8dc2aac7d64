@@ -1,0 +1,18 @@
+src/landingData.js
+  h_b2be70cfc5404d 4-11
+dist/index.html
+  h_b2be70cfc5404d 11-12
+src/App.jsx
+  h_b2be70cfc5404d 18,77,190,245-252
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.0",
+  "base_commit_sha": "d41d63750ef14df04e134fe00b00d8dc2aac7d64",
+  "prompts": {},
+  "humans": {
+    "h_b2be70cfc5404d": {
+      "author": "佳伟"
+    }
+  }
+}

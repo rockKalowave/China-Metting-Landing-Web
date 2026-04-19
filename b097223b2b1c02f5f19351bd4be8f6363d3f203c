@@ -1,0 +1,23 @@
+src/App.jsx
+  4f0d6e96e24537f9 188
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.0",
+  "base_commit_sha": "b097223b2b1c02f5f19351bd4be8f6363d3f203c",
+  "prompts": {
+    "4f0d6e96e24537f9": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "72dfc833-6f96-454e-acbc-c2fdcafaec47",
+        "model": "<synthetic>"
+      },
+      "human_author": "佳伟",
+      "messages": [],
+      "total_additions": 1,
+      "total_deletions": 0,
+      "accepted_lines": 1,
+      "overriden_lines": 0
+    }
+  }
+}

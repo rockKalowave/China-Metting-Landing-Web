@@ -20,7 +20,6 @@ export const heroSlides = [
 ];
 
 export const heroDecor = {
-  centerQr: asset('01首屏/register-qr-center.png'),
   highlights: asset('01首屏/首屏四大亮点.png'),
   left: asset('01首屏/视觉元素 左.png'),
   right: asset('01首屏/视觉元素 右.png'),

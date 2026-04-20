@@ -119,9 +119,7 @@ function HomePage({ activeSection, scrollToSection }) {
           <img alt="" aria-hidden="true" className="hero__background" src={heroDecor.background} />
           <div className="section-shell hero__shell">
             <div aria-hidden="true" className="hero__center-qr">
-              <div className="hero__center-qr-mask">
-                <img alt="" className="hero__center-qr-image" src={heroDecor.centerQr} />
-              </div>
+              <img alt="" className="hero__center-qr-image" src={registerQrImage} />
             </div>
 
             <aside className="hero-side-panel" aria-label="首屏快捷入口">

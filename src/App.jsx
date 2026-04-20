@@ -57,13 +57,13 @@ function Marquee({ items, direction = 'left', itemClassName = '' }) {
           const assetName = decodeURIComponent(item.split('/').pop() ?? '');
 
           return (
-          <div
-            className={`marquee__item ${itemClassName}`.trim()}
-            data-asset={assetName}
-            key={`${direction}-${index}`}
-          >
-            <img src={item} alt="" />
-          </div>
+            <div
+              className={`marquee__item ${itemClassName}`.trim()}
+              data-asset={assetName}
+              key={`${direction}-${index}`}
+            >
+              <img src={item} alt="" />
+            </div>
           );
         })}
       </div>
@@ -118,13 +118,21 @@ function HomePage({ activeSection, scrollToSection }) {
         <section className="hero" id="home">
           <img alt="" aria-hidden="true" className="hero__background" src={heroDecor.background} />
           <div className="section-shell hero__shell">
+            <div aria-hidden="true" className="hero__center-qr">
+              <div className="hero__center-qr-mask">
+                <img alt="" className="hero__center-qr-image" src={heroDecor.centerQr} />
+              </div>
+            </div>
+
             <aside className="hero-side-panel" aria-label="首屏快捷入口">
               <RegistrationQrCard compact />
               <SidePanelActionButton
                 alt="招商合作"
                 defaultSrc={sideButtonImages.sponsor}
                 hoverSrc={sideButtonImages.sponsorHover}
-                onClick={() => window.location.href = SPONSORSHIP_URL}
+                onClick={() => {
+                  window.location.href = SPONSORSHIP_URL;
+                }}
               />
               <SidePanelActionButton
                 alt="大会咨询"
@@ -187,7 +195,7 @@ function HomePage({ activeSection, scrollToSection }) {
 }
 
 function App() {
-  const [currentPath, setCurrentPath] = useState(window.location.pathname || '/');
+  const [currentPath, setCurrentPath] = useState(() => getRelativePath(window.location.pathname));
   const [activeSection, setActiveSection] = useState(navItems[0].id);
   const navOverrideRef = useRef(null);
   const navTargetYRef = useRef(null);
@@ -242,14 +250,8 @@ function App() {
         navOverrideRef.current = null;
         navTargetYRef.current = null;
       } else if (navOverrideRef.current) {
-        const targetElement = document.getElementById(navOverrideRef.current);
-        if (!targetElement) {
-          navOverrideRef.current = null;
-          navTargetYRef.current = null;
-        } else {
-          navOverrideRef.current = null;
-          navTargetYRef.current = null;
-        }
+        navOverrideRef.current = null;
+        navTargetYRef.current = null;
       }
 
       const currentMarker = window.scrollY + 180;

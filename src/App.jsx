@@ -17,6 +17,7 @@ import { getRelativePath, toFullPath } from './utils/navigation';
 
 const registerQrImage = 'https://d149xzut2sq6e3.cloudfront.net/upload/d4d2b9b3.png';
 const SPONSORSHIP_URL = 'https://www.wjx.top/vm/tU5XHKW.aspx#';
+const LOCKED_PAGE_WIDTH = 1920;
 const CORE_VALUES_IMAGE = encodeURI(`${import.meta.env.BASE_URL}landing/核心价值 - 整图.jpg`);
 
 function ImageSection({ id, image, alt, children, bleed = false, plain = false }) {
@@ -92,7 +93,8 @@ function HomePage({ activeSection, scrollToSection }) {
   const [activeCreatorPage, setActiveCreatorPage] = useState(0);
 
   return (
-    <div className="landing-page">
+    <div className="landing-page-frame">
+      <div className="landing-page">
       <header className="site-header">
         <div className="site-header__inner">
           <button className="site-brand" onClick={() => scrollToSection('home')} type="button">
@@ -188,6 +190,7 @@ function HomePage({ activeSection, scrollToSection }) {
         </ImageSection>
         <ImageSection id="contact" image={sectionImages.contact} alt="联系我们板块" />
       </main>
+      </div>
     </div>
   );
 }
@@ -211,6 +214,55 @@ function App() {
 
     return () => {
       document.removeEventListener('dragstart', preventNativeDrag);
+    };
+  }, []);
+
+  useEffect(() => {
+    const preventZoomShortcut = (event) => {
+      if (!(event.ctrlKey || event.metaKey)) {
+        return;
+      }
+
+      if (['+', '=', '-', '_', '0'].includes(event.key)) {
+        event.preventDefault();
+      }
+    };
+
+    const preventZoomWheel = (event) => {
+      if (event.ctrlKey) {
+        event.preventDefault();
+      }
+    };
+
+    const preventGestureZoom = (event) => {
+      event.preventDefault();
+    };
+
+    window.addEventListener('keydown', preventZoomShortcut);
+    window.addEventListener('wheel', preventZoomWheel, { passive: false });
+    document.addEventListener('gesturestart', preventGestureZoom);
+    document.addEventListener('gesturechange', preventGestureZoom);
+
+    return () => {
+      window.removeEventListener('keydown', preventZoomShortcut);
+      window.removeEventListener('wheel', preventZoomWheel);
+      document.removeEventListener('gesturestart', preventGestureZoom);
+      document.removeEventListener('gesturechange', preventGestureZoom);
+    };
+  }, []);
+
+  useEffect(() => {
+    const updatePageScale = () => {
+      const scale = Math.min(window.innerWidth / LOCKED_PAGE_WIDTH, 1);
+      document.documentElement.style.setProperty('--page-scale', scale.toFixed(4));
+      document.documentElement.style.setProperty('--page-scaled-width', `${Math.round(LOCKED_PAGE_WIDTH * scale)}px`);
+    };
+
+    updatePageScale();
+    window.addEventListener('resize', updatePageScale);
+
+    return () => {
+      window.removeEventListener('resize', updatePageScale);
     };
   }, []);
 

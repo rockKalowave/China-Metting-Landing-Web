@@ -1,4 +1,4 @@
-const asset = (relativePath) => encodeURI(`${import.meta.env.BASE_URL}landing/${relativePath}`);
+const asset = (relativePath) => `${import.meta.env.BASE_URL}landing/${relativePath}`;
 
 export const navItems = [
   { id: 'about', label: '大会介绍' },

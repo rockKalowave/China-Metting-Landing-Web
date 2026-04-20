@@ -15,6 +15,7 @@ import TicketPage from './pages/ticket/TicketPage';
 import PayPage from './pages/pay/PayPage';
 import { getRelativePath, toFullPath } from './utils/navigation';
 
+const registerQrImage = 'https://d149xzut2sq6e3.cloudfront.net/upload/d4d2b9b3.png';
 const SPONSORSHIP_URL = 'https://www.wjx.top/vm/tU5XHKW.aspx#';
 const CORE_VALUES_IMAGE = encodeURI(`${import.meta.env.BASE_URL}landing/核心价值 - 整图.jpg`);
 
@@ -56,13 +57,13 @@ function Marquee({ items, direction = 'left', itemClassName = '' }) {
           const assetName = decodeURIComponent(item.split('/').pop() ?? '');
 
           return (
-          <div
-            className={`marquee__item ${itemClassName}`.trim()}
-            data-asset={assetName}
-            key={`${direction}-${index}`}
-          >
-            <img src={item} alt="" />
-          </div>
+            <div
+              className={`marquee__item ${itemClassName}`.trim()}
+              data-asset={assetName}
+              key={`${direction}-${index}`}
+            >
+              <img src={item} alt="" />
+            </div>
           );
         })}
       </div>
@@ -73,7 +74,7 @@ function Marquee({ items, direction = 'left', itemClassName = '' }) {
 function RegistrationQrCard({ compact = false }) {
   return (
     <div className={compact ? 'registration-qr registration-qr--compact' : 'registration-qr'}>
-      <img className="registration-qr__asset" src={sideButtonImages.register} alt="KACE 2026 立即报名二维码" />
+      <img className="registration-qr__asset" src={registerQrImage} alt="KACE 2026 立即报名二维码" />
     </div>
   );
 }
@@ -117,13 +118,21 @@ function HomePage({ activeSection, scrollToSection }) {
         <section className="hero" id="home">
           <img alt="" aria-hidden="true" className="hero__background" src={heroDecor.background} />
           <div className="section-shell hero__shell">
+            <div aria-hidden="true" className="hero__center-qr">
+              <div className="hero__center-qr-mask">
+                <img alt="" className="hero__center-qr-image" src={heroDecor.centerQr} />
+              </div>
+            </div>
+
             <aside className="hero-side-panel" aria-label="首屏快捷入口">
               <RegistrationQrCard compact />
               <SidePanelActionButton
                 alt="招商合作"
                 defaultSrc={sideButtonImages.sponsor}
                 hoverSrc={sideButtonImages.sponsorHover}
-                onClick={() => window.location.href = SPONSORSHIP_URL}
+                onClick={() => {
+                  window.location.href = SPONSORSHIP_URL;
+                }}
               />
               <SidePanelActionButton
                 alt="大会咨询"

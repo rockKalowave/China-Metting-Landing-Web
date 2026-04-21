@@ -18,7 +18,7 @@ import { getRelativePath, toFullPath } from './utils/navigation';
 const registerQrImage = 'https://d149xzut2sq6e3.cloudfront.net/upload/d4d2b9b3.png';
 const SPONSORSHIP_URL = 'https://www.wjx.top/vm/tU5XHKW.aspx#';
 const LOCKED_PAGE_WIDTH = 1920;
-const CORE_VALUES_IMAGE = encodeURI(`${import.meta.env.BASE_URL}landing/核心价值 - 整图.jpg`);
+const CORE_VALUES_IMAGE = encodeURI(`${import.meta.env.BASE_URL}landing/核心价值 - 整图.webp`);
 
 function ImageSection({ id, image, alt, children, bleed = false, plain = false }) {
   return (

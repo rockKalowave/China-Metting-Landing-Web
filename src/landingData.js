@@ -28,12 +28,12 @@ export const heroDecor = {
 
 export const sectionImages = {
   about: asset('about/about-full.webp'),
-  industry: asset('行业首创/行业首创 - 整图.jpg'),
+  industry: asset('行业首创/行业首创 - 整图.webp'),
   expoDesign: asset('大会设计/大会设计.webp'),
-  expoDesignReference: asset('大会设计/20.jpg'),
+  expoDesignReference: asset('大会设计/20.webp'),
   values: asset('品牌机构与达人.jpg'),
-  highlights: asset('展会亮点/展会亮点 - 整图.jpg'),
-  content: asset('展会内容/展会内容 - 整图.jpg'),
+  highlights: asset('展会亮点/展会亮点 - 整图.webp'),
+  content: asset('展会内容/展会内容 - 整图.webp'),
   audience: asset('用户画像 - 整图.jpg'),
   review: asset('往期回顾 - 整图.jpg'),
   organizer: asset('主办方介绍.jpg'),
@@ -85,6 +85,6 @@ export const creatorTrackItems = [
 ];
 
 export const creatorPages = [
-  asset('拟邀请达人/达人第一页.png'),
-  asset('拟邀请达人/达人第二页.png'),
+  asset('拟邀请达人/达人第一页.webp'),
+  asset('拟邀请达人/达人第二页.webp'),
 ];

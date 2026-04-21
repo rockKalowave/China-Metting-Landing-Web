@@ -31,13 +31,13 @@ export const sectionImages = {
   industry: asset('行业首创/行业首创 - 整图.webp'),
   expoDesign: asset('大会设计/大会设计.webp'),
   expoDesignReference: asset('大会设计/20.webp'),
-  values: asset('品牌机构与达人.jpg'),
+  values: asset('品牌机构与达人.webp'),
   highlights: asset('展会亮点/展会亮点 - 整图.webp'),
   content: asset('展会内容/展会内容 - 整图.webp'),
-  audience: asset('用户画像 - 整图.jpg'),
-  review: asset('往期回顾 - 整图.jpg'),
-  organizer: asset('主办方介绍.jpg'),
-  contact: asset('联系我们 - 整图.jpg'),
+  audience: asset('用户画像 - 整图.webp'),
+  review: asset('往期回顾 - 整图.webp'),
+  organizer: asset('主办方介绍.webp'),
+  contact: asset('联系我们 - 整图.webp'),
   creatorsTitle: asset('拟邀请达人/拟邀请达人.svg'),
 };
 

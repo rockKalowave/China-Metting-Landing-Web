@@ -1,4 +1,4 @@
-﻿import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import {
   creatorPages,
   creatorTrackItems,
@@ -17,6 +17,8 @@ import { getRelativePath, toFullPath } from './utils/navigation';
 
 const registerQrImage = 'https://d149xzut2sq6e3.cloudfront.net/upload/d4d2b9b3.png';
 const SPONSORSHIP_URL = 'https://www.wjx.top/vm/tU5XHKW.aspx#';
+const LOCKED_PAGE_WIDTH = 1920;
+const CORE_VALUES_IMAGE = encodeURI(`${import.meta.env.BASE_URL}landing/核心价值 - 整图.jpg`);
 
 function ImageSection({ id, image, alt, children, bleed = false, plain = false }) {
   return (
@@ -31,9 +33,9 @@ function ImageSection({ id, image, alt, children, bleed = false, plain = false }
   );
 }
 
-function BrandMatrixSection() {
+function BrandMatrixSection({ id }) {
   return (
-    <section aria-label="核心价值板块" className="content-section" id="values">
+    <section aria-label="核心价值板块" className="content-section" id={id}>
       <div className="section-shell">
         <div className="brand-matrix" style={{ '--brand-matrix-bg': `url(${sectionImages.values})` }}>
           <div className="brand-matrix__overlay">
@@ -52,11 +54,19 @@ function Marquee({ items, direction = 'left', itemClassName = '' }) {
   return (
     <div className="marquee">
       <div className={`marquee__track marquee__track--${direction}`}>
-        {trackItems.map((item, index) => (
-          <div className={`marquee__item ${itemClassName}`.trim()} key={`${direction}-${index}`}>
-            <img src={item} alt="" />
-          </div>
-        ))}
+        {trackItems.map((item, index) => {
+          const assetName = decodeURIComponent(item.split('/').pop() ?? '');
+
+          return (
+            <div
+              className={`marquee__item ${itemClassName}`.trim()}
+              data-asset={assetName}
+              key={`${direction}-${index}`}
+            >
+              <img src={item} alt="" />
+            </div>
+          );
+        })}
       </div>
     </div>
   );
@@ -83,7 +93,8 @@ function HomePage({ activeSection, scrollToSection }) {
   const [activeCreatorPage, setActiveCreatorPage] = useState(0);
 
   return (
-    <div className="landing-page">
+    <div className="landing-page-frame">
+      <div className="landing-page">
       <header className="site-header">
         <div className="site-header__inner">
           <button className="site-brand" onClick={() => scrollToSection('home')} type="button">
@@ -109,13 +120,19 @@ function HomePage({ activeSection, scrollToSection }) {
         <section className="hero" id="home">
           <img alt="" aria-hidden="true" className="hero__background" src={heroDecor.background} />
           <div className="section-shell hero__shell">
+            <div aria-hidden="true" className="hero__center-qr">
+              <img alt="" className="hero__center-qr-image" src={registerQrImage} />
+            </div>
+
             <aside className="hero-side-panel" aria-label="首屏快捷入口">
               <RegistrationQrCard compact />
               <SidePanelActionButton
                 alt="招商合作"
                 defaultSrc={sideButtonImages.sponsor}
                 hoverSrc={sideButtonImages.sponsorHover}
-                onClick={() => window.location.href = SPONSORSHIP_URL}
+                onClick={() => {
+                  window.location.href = SPONSORSHIP_URL;
+                }}
               />
               <SidePanelActionButton
                 alt="大会咨询"
@@ -138,15 +155,12 @@ function HomePage({ activeSection, scrollToSection }) {
         <ImageSection id="about" image={sectionImages.about} alt="大会介绍板块" plain />
         <ImageSection id="content" image={sectionImages.content} alt="展会内容板块" />
         <ImageSection id="highlights" image={sectionImages.highlights} alt="展会亮点板块" />
-
         <ImageSection id="industry" image={sectionImages.industry} alt="行业首创板块" />
         <BrandMatrixSection />
+        <ImageSection id="values" image={CORE_VALUES_IMAGE} alt="核心价值板块" />
 
-        <section className="content-section" id="creators">
-          <div className="section-shell">
-            <div className="section-title-image section-title-image--creators">
-              <img alt="拟邀达人" src={sectionImages.creatorsTitle} />
-            </div>
+        <section className="content-section creators-section" id="creators">
+          <div className="section-shell creators-section__shell">
             <div className="creator-pages">
               <article className="creator-page">
                 <img alt={`拟邀达人第 ${activeCreatorPage + 1} 页`} src={creatorPages[activeCreatorPage]} />
@@ -176,12 +190,13 @@ function HomePage({ activeSection, scrollToSection }) {
         </ImageSection>
         <ImageSection id="contact" image={sectionImages.contact} alt="联系我们板块" />
       </main>
+      </div>
     </div>
   );
 }
 
 function App() {
-  const [currentPath, setCurrentPath] = useState(window.location.pathname || '/');
+  const [currentPath, setCurrentPath] = useState(() => getRelativePath(window.location.pathname));
   const [activeSection, setActiveSection] = useState(navItems[0].id);
   const navOverrideRef = useRef(null);
   const navTargetYRef = useRef(null);
@@ -190,6 +205,67 @@ function App() {
   const isBuyPage = currentPath === '/buy';
   const isTicketPage = currentPath === '/ticket';
   const isPayPage = currentPath === '/pay';
+
+  useEffect(() => {
+    const preventNativeDrag = (event) => {
+      event.preventDefault();
+    };
+
+    document.addEventListener('dragstart', preventNativeDrag);
+
+    return () => {
+      document.removeEventListener('dragstart', preventNativeDrag);
+    };
+  }, []);
+
+  useEffect(() => {
+    const preventZoomShortcut = (event) => {
+      if (!(event.ctrlKey || event.metaKey)) {
+        return;
+      }
+
+      if (['+', '=', '-', '_', '0'].includes(event.key)) {
+        event.preventDefault();
+      }
+    };
+
+    const preventZoomWheel = (event) => {
+      if (event.ctrlKey) {
+        event.preventDefault();
+      }
+    };
+
+    const preventGestureZoom = (event) => {
+      event.preventDefault();
+    };
+
+    window.addEventListener('keydown', preventZoomShortcut);
+    window.addEventListener('wheel', preventZoomWheel, { passive: false });
+    document.addEventListener('gesturestart', preventGestureZoom);
+    document.addEventListener('gesturechange', preventGestureZoom);
+
+    return () => {
+      window.removeEventListener('keydown', preventZoomShortcut);
+      window.removeEventListener('wheel', preventZoomWheel);
+      document.removeEventListener('gesturestart', preventGestureZoom);
+      document.removeEventListener('gesturechange', preventGestureZoom);
+    };
+  }, []);
+
+  useEffect(() => {
+    const updatePageScale = () => {
+      const scale = Math.min(window.innerWidth / LOCKED_PAGE_WIDTH, 1);
+      document.documentElement.style.setProperty('--page-scale', scale.toFixed(4));
+      document.documentElement.style.setProperty('--page-scaled-width', `${Math.round(LOCKED_PAGE_WIDTH * scale)}px`);
+    };
+
+    updatePageScale();
+    window.addEventListener('resize', updatePageScale);
+
+    return () => {
+      window.removeEventListener('resize', updatePageScale);
+    };
+  }, []);
 
   useEffect(() => {
     document.title = isSignupPage
@@ -225,14 +301,8 @@ function App() {
         navOverrideRef.current = null;
         navTargetYRef.current = null;
       } else if (navOverrideRef.current) {
-        const targetElement = document.getElementById(navOverrideRef.current);
-        if (!targetElement) {
-          navOverrideRef.current = null;
-          navTargetYRef.current = null;
-        } else {
-          navOverrideRef.current = null;
-          navTargetYRef.current = null;
-        }
+        navOverrideRef.current = null;
+        navTargetYRef.current = null;
       }
 
       const currentMarker = window.scrollY + 180;
@@ -285,9 +355,6 @@ function App() {
         navTargetYRef.current = null;
         return;
       }
-      if (navOverrideTimerRef.current) {
-        window.clearTimeout(navOverrideTimerRef.current);
-      }
 
       window.scrollTo({ top: targetY, left: 0, behavior: 'smooth' });
     }
@@ -309,12 +376,7 @@ function App() {
     return <TicketPage />;
   }
 
-  return (
-    <HomePage
-      activeSection={activeSection}
-      scrollToSection={scrollToSection}
-    />
-  );
+  return <HomePage activeSection={activeSection} scrollToSection={scrollToSection} />;
 }
 
 export default App;

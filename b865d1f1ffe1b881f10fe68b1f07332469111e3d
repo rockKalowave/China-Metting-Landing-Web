@@ -1,0 +1,25 @@
+src/styles.css
+  87fd87998cd39ef9 684
+src/landingData.js
+  87fd87998cd39ef9 31,33,35-36,88-89
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.0",
+  "base_commit_sha": "b865d1f1ffe1b881f10fe68b1f07332469111e3d",
+  "prompts": {
+    "87fd87998cd39ef9": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "ab4db143-f266-4346-a6ed-f11d0ca8b1b7",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "佳伟",
+      "messages": [],
+      "total_additions": 7,
+      "total_deletions": 7,
+      "accepted_lines": 7,
+      "overriden_lines": 0
+    }
+  }
+}

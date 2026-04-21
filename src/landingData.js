@@ -12,32 +12,32 @@ export const navItems = [
 ];
 
 export const heroSlides = [
-  asset('01首屏/首屏轮播图/1.png'),
-  asset('01首屏/首屏轮播图/2.png'),
-  asset('01首屏/首屏轮播图/3.png'),
-  asset('01首屏/首屏轮播图/4.png'),
-  asset('01首屏/首屏轮播图/5.png'),
+  asset('01首屏/首屏轮播图/1.webp'),
+  asset('01首屏/首屏轮播图/2.webp'),
+  asset('01首屏/首屏轮播图/3.webp'),
+  asset('01首屏/首屏轮播图/4.webp'),
+  asset('01首屏/首屏轮播图/5.webp'),
 ];
 
 export const heroDecor = {
   highlights: asset('01首屏/首屏四大亮点.png'),
   left: asset('01首屏/视觉元素 左.png'),
   right: asset('01首屏/视觉元素 右.png'),
-  background: asset('01首屏/首屏底图.jpg'),
+  background: asset('01首屏/首屏底图.webp'),
 };
 
 export const sectionImages = {
-  about: asset('about/about-full.jpg'),
-  industry: asset('行业首创/行业首创 - 整图.jpg'),
-  expoDesign: asset('大会设计/大会设计.jpg'),
-  expoDesignReference: asset('大会设计/20.jpg'),
-  values: asset('品牌机构与达人.jpg'),
-  highlights: asset('展会亮点/展会亮点 - 整图.jpg'),
-  content: asset('展会内容/展会内容 - 整图.jpg'),
-  audience: asset('用户画像 - 整图.jpg'),
-  review: asset('往期回顾 - 整图.jpg'),
-  organizer: asset('主办方介绍.jpg'),
-  contact: asset('联系我们 - 整图.jpg'),
+  about: asset('about/about-full.webp'),
+  industry: asset('行业首创/行业首创 - 整图.webp'),
+  expoDesign: asset('大会设计/大会设计.webp'),
+  expoDesignReference: asset('大会设计/20.webp'),
+  values: asset('品牌机构与达人.webp'),
+  highlights: asset('展会亮点/展会亮点 - 整图.webp'),
+  content: asset('展会内容/展会内容 - 整图.webp'),
+  audience: asset('用户画像 - 整图.webp'),
+  review: asset('往期回顾 - 整图.webp'),
+  organizer: asset('主办方介绍.webp'),
+  contact: asset('联系我们 - 整图.webp'),
   creatorsTitle: asset('拟邀请达人/拟邀请达人.svg'),
 };
 
@@ -85,6 +85,6 @@ export const creatorTrackItems = [
 ];
 
 export const creatorPages = [
-  asset('拟邀请达人/达人第一页.png'),
-  asset('拟邀请达人/达人第二页.png'),
+  asset('拟邀请达人/达人第一页.webp'),
+  asset('拟邀请达人/达人第二页.webp'),
 ];

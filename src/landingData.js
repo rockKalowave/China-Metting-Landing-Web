@@ -12,24 +12,24 @@ export const navItems = [
 ];
 
 export const heroSlides = [
-  asset('01首屏/首屏轮播图/1.png'),
-  asset('01首屏/首屏轮播图/2.png'),
-  asset('01首屏/首屏轮播图/3.png'),
-  asset('01首屏/首屏轮播图/4.png'),
-  asset('01首屏/首屏轮播图/5.png'),
+  asset('01首屏/首屏轮播图/1.webp'),
+  asset('01首屏/首屏轮播图/2.webp'),
+  asset('01首屏/首屏轮播图/3.webp'),
+  asset('01首屏/首屏轮播图/4.webp'),
+  asset('01首屏/首屏轮播图/5.webp'),
 ];
 
 export const heroDecor = {
   highlights: asset('01首屏/首屏四大亮点.png'),
   left: asset('01首屏/视觉元素 左.png'),
   right: asset('01首屏/视觉元素 右.png'),
-  background: asset('01首屏/首屏底图.jpg'),
+  background: asset('01首屏/首屏底图.webp'),
 };
 
 export const sectionImages = {
-  about: asset('about/about-full.jpg'),
+  about: asset('about/about-full.webp'),
   industry: asset('行业首创/行业首创 - 整图.jpg'),
-  expoDesign: asset('大会设计/大会设计.jpg'),
+  expoDesign: asset('大会设计/大会设计.webp'),
   expoDesignReference: asset('大会设计/20.jpg'),
   values: asset('品牌机构与达人.jpg'),
   highlights: asset('展会亮点/展会亮点 - 整图.jpg'),

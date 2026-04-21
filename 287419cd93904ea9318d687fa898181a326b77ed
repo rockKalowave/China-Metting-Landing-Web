@@ -1,0 +1,23 @@
+src/landingData.js
+  87fd87998cd39ef9 15-19,26,30,32
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.0",
+  "base_commit_sha": "287419cd93904ea9318d687fa898181a326b77ed",
+  "prompts": {
+    "87fd87998cd39ef9": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "ab4db143-f266-4346-a6ed-f11d0ca8b1b7",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "佳伟",
+      "messages": [],
+      "total_additions": 8,
+      "total_deletions": 8,
+      "accepted_lines": 8,
+      "overriden_lines": 0
+    }
+  }
+}

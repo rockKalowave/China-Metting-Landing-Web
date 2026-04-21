@@ -1,0 +1,14 @@
+.gitignore
+  h_b2be70cfc5404d 6
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.0",
+  "base_commit_sha": "45e0de06114be9ae109d07929d57d5a1ea82656f",
+  "prompts": {},
+  "humans": {
+    "h_b2be70cfc5404d": {
+      "author": "佳伟"
+    }
+  }
+}

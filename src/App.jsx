@@ -11,12 +11,12 @@ import {
 } from './landingData';
 import SignupPage from './pages/signup/SignupPage';
 import BuyPage from './pages/buy/buy';
+import PartnerPage from './pages/partner/PartnerPage';
 import TicketPage from './pages/ticket/TicketPage';
 import PayPage from './pages/pay/PayPage';
 import { getRelativePath, toFullPath } from './utils/navigation';
 
 const registerQrImage = 'https://d149xzut2sq6e3.cloudfront.net/upload/d4d2b9b3.png';
-const SPONSORSHIP_URL = 'https://www.wjx.top/vm/tU5XHKW.aspx#';
 const LOCKED_PAGE_WIDTH = 1920;
 const CORE_VALUES_IMAGE = encodeURI(`${import.meta.env.BASE_URL}landing/核心价值 - 整图.webp`);
 
@@ -130,9 +130,7 @@ function HomePage({ activeSection, scrollToSection }) {
                 alt="招商合作"
                 defaultSrc={sideButtonImages.sponsor}
                 hoverSrc={sideButtonImages.sponsorHover}
-                onClick={() => {
-                  window.location.href = SPONSORSHIP_URL;
-                }}
+                onClick={() => { window.location.href = toFullPath('/partner'); }}
               />
               <SidePanelActionButton
                 alt="大会咨询"
@@ -203,6 +201,7 @@ function App() {
   const navOverrideTimerRef = useRef(null);
   const isSignupPage = currentPath === '/signup';
   const isBuyPage = currentPath === '/buy';
+  const isPartnerPage = currentPath === '/partner';
   const isTicketPage = currentPath === '/ticket';
   const isPayPage = currentPath === '/pay';
 
@@ -366,6 +365,10 @@ function App() {
 
   if (isBuyPage) {
     return <BuyPage onNavigateHome={() => navigateTo('/')} />;
+  }
+
+  if (isPartnerPage) {
+    return <PartnerPage onNavigateHome={() => navigateTo('/')} />;
   }
 
   if (isPayPage) {

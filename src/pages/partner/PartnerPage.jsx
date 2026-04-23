@@ -86,6 +86,7 @@ export default function PartnerPage({ onNavigateHome }) {
     name: '',
     contact: '',
     title: '',
+    customTitle: '',
     partnerType: '',
   });
   const [agreed, setAgreed] = useState(false);
@@ -116,16 +117,20 @@ export default function PartnerPage({ onNavigateHome }) {
       setSubmitMsg({ type: 'error', text: '请填写公司名称' });
       return;
     }
-    if (!name.trim()) {
-      setSubmitMsg({ type: 'error', text: '请填写您的姓名' });
+    if (!name.trim() || !/^[\u4e00-\u9fa5]{2,15}$/.test(name.trim())) {
+      setSubmitMsg({ type: 'error', text: '姓名必须为2到15个汉字' });
       return;
     }
-    if (!contact.trim()) {
-      setSubmitMsg({ type: 'error', text: '请填写联系方式' });
+    if (!/^\d{11}$/.test(contact.trim())) {
+      setSubmitMsg({ type: 'error', text: '手机号必须为11位数字' });
       return;
     }
     if (!title) {
       setSubmitMsg({ type: 'error', text: '请选择您的Title' });
+      return;
+    }
+    if (title === '其他' && !formData.customTitle.trim()) {
+      setSubmitMsg({ type: 'error', text: '请填写您的Title' });
       return;
     }
     if (!partnerType) {
@@ -148,7 +153,7 @@ export default function PartnerPage({ onNavigateHome }) {
           company_name: companyName.trim(),
           name: name.trim(),
           contact: contact.trim(),
-          title,
+          title: title === '其他' ? formData.customTitle.trim() : title,
           partner_type: partnerType,
         }),
       });
@@ -160,7 +165,7 @@ export default function PartnerPage({ onNavigateHome }) {
       }
 
       setSubmitMsg({ type: 'success', text: '提交成功，感谢您的合作意向！' });
-      setFormData({ companyName: '', name: '', contact: '', title: '', partnerType: '' });
+      setFormData({ companyName: '', name: '', contact: '', title: '', customTitle: '', partnerType: '' });
       setAgreed(false);
     } catch {
       setSubmitMsg({ type: 'error', text: '网络异常，请稍后重试' });
@@ -208,15 +213,17 @@ export default function PartnerPage({ onNavigateHome }) {
         </div>
 
         <div className="partner-question">
-          <label className="partner-question__label partner-question__label--required">3. 联系方式：</label>
+          <label className="partner-question__label partner-question__label--required">3. 手机号：</label>
           <div className="partner-input">
             <span className="partner-input__icon">
               <IconPhone />
             </span>
             <input
-              placeholder="请输入手机号或微信号"
+              placeholder="请输入11位手机号"
               value={formData.contact}
               onChange={updateField('contact')}
+              maxLength={11}
+              inputMode="numeric"
             />
           </div>
         </div>
@@ -226,8 +233,17 @@ export default function PartnerPage({ onNavigateHome }) {
           <RadioGroup
             options={titleOptions}
             value={formData.title}
-            onChange={(val) => { setFormData((prev) => ({ ...prev, title: val })); setSubmitMsg(null); }}
+            onChange={(val) => { setFormData((prev) => ({ ...prev, title: val, customTitle: val === '其他' ? prev.customTitle : '' })); setSubmitMsg(null); }}
           />
+          {formData.title === '其他' && (
+            <div className="partner-input" style={{ marginTop: 8 }}>
+              <input
+                placeholder="请输入您的Title"
+                value={formData.customTitle}
+                onChange={updateField('customTitle')}
+              />
+            </div>
+          )}
         </div>
 
         <div className="partner-question">

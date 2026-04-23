@@ -17,6 +17,7 @@ import PayPage from './pages/pay/PayPage';
 import { getRelativePath, toFullPath } from './utils/navigation';
 
 const registerQrImage = 'https://d149xzut2sq6e3.cloudfront.net/upload/d4d2b9b3.png';
+const registerSvg = encodeURI(`${import.meta.env.BASE_URL}landing/01首屏/立即报名.svg`);
 const LOCKED_PAGE_WIDTH = 1920;
 const CORE_VALUES_IMAGE = encodeURI(`${import.meta.env.BASE_URL}landing/核心价值 - 整图.webp`);
 
@@ -42,6 +43,8 @@ function BrandMatrixSection({ id }) {
             <Marquee itemClassName="marquee__item--logo" items={logoItems} />
             <Marquee direction="right" itemClassName="marquee__item--creator" items={creatorTrackItems} />
           </div>
+
+          <div className='section-shell-text'>*以上品牌与达人均列入拟邀约名单</div>
         </div>
       </div>
     </section>
@@ -75,7 +78,7 @@ function Marquee({ items, direction = 'left', itemClassName = '' }) {
 function RegistrationQrCard({ compact = false }) {
   return (
     <div className={compact ? 'registration-qr registration-qr--compact' : 'registration-qr'}>
-      <img className="registration-qr__asset" src={registerQrImage} alt="KACE 2026 立即报名二维码" />
+      <img className="registration-qr__asset" src={registerSvg} alt="KACE 2026 立即报名" />
     </div>
   );
 }
@@ -120,9 +123,9 @@ function HomePage({ activeSection, scrollToSection }) {
         <section className="hero" id="home">
           <img alt="" aria-hidden="true" className="hero__background" src={heroDecor.background} />
           <div className="section-shell hero__shell">
-            <div aria-hidden="true" className="hero__center-qr">
+            {/* <div aria-hidden="true" className="hero__center-qr">
               <img alt="" className="hero__center-qr-image" src={registerQrImage} />
-            </div>
+            </div> */}
 
             <aside className="hero-side-panel" aria-label="首屏快捷入口">
               <RegistrationQrCard compact />
@@ -304,12 +307,14 @@ function App() {
         navTargetYRef.current = null;
       }
 
+      const rootStyles = window.getComputedStyle(document.documentElement);
+      const scale = Number.parseFloat(rootStyles.getPropertyValue('--page-scale')) || 1;
       const currentMarker = window.scrollY + 180;
       let currentSection = navItems[0].id;
 
       for (const item of navItems) {
         const element = document.getElementById(item.id);
-        if (element && element.offsetTop <= currentMarker) {
+        if (element && element.offsetTop * scale <= currentMarker) {
           currentSection = item.id;
         }
       }
@@ -342,8 +347,17 @@ function App() {
     if (target) {
       const rootStyles = window.getComputedStyle(document.documentElement);
       const headerHeight = Number.parseFloat(rootStyles.getPropertyValue('--header-height')) || 60;
+      const scale = Number.parseFloat(rootStyles.getPropertyValue('--page-scale')) || 1;
       const topOffset = headerHeight + 16;
-      const targetY = Math.max(target.getBoundingClientRect().top + window.scrollY - topOffset, 0);
+
+      // 使用 offsetTop 代替 getBoundingClientRect，避免 CSS zoom 在不同浏览器下坐标计算不一致
+      let offsetTop = 0;
+      let el = target;
+      while (el) {
+        offsetTop += el.offsetTop;
+        el = el.offsetParent;
+      }
+      const targetY = Math.max(offsetTop * scale - topOffset * scale, 0);
 
       navOverrideRef.current = sectionId;
       navTargetYRef.current = targetY;

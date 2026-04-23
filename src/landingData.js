@@ -20,7 +20,6 @@ export const heroSlides = [
 ];
 
 export const heroDecor = {
-  highlights: asset('01首屏/首屏四大亮点.png'),
   left: asset('01首屏/视觉元素 左.png'),
   right: asset('01首屏/视觉元素 右.png'),
   background: asset('01首屏/首屏底图.webp'),
@@ -55,33 +54,33 @@ export const sideButtonImages = {
 };
 
 export const logoItems = [
-  asset('行业首创/logo - 向左轮播/Group 12.png'),
-  asset('行业首创/logo - 向左轮播/Group 13.png'),
-  asset('行业首创/logo - 向左轮播/Group 14.png'),
-  asset('行业首创/logo - 向左轮播/Group 15.png'),
-  asset('行业首创/logo - 向左轮播/Group 16.png'),
-  asset('行业首创/logo - 向左轮播/Group 17.png'),
-  asset('行业首创/logo - 向左轮播/Group 18.png'),
-  asset('行业首创/logo - 向左轮播/Group 19.png'),
+  asset('行业首创/logo - 向左轮播/Group 12.webp'),
+  asset('行业首创/logo - 向左轮播/Group 13.webp'),
+  asset('行业首创/logo - 向左轮播/Group 14.webp'),
+  asset('行业首创/logo - 向左轮播/Group 15.webp'),
+  asset('行业首创/logo - 向左轮播/Group 16.webp'),
+  asset('行业首创/logo - 向左轮播/Group 17.webp'),
+  asset('行业首创/logo - 向左轮播/Group 18.webp'),
+  asset('行业首创/logo - 向左轮播/Group 19.webp'),
 ];
 
 export const creatorTrackItems = [
-  asset('行业首创/达人 - 向右轮播/Group 12.png'),
-  asset('行业首创/达人 - 向右轮播/Group 13.png'),
-  asset('行业首创/达人 - 向右轮播/Group 14.png'),
-  asset('行业首创/达人 - 向右轮播/Group 15.png'),
-  asset('行业首创/达人 - 向右轮播/Group 18.png'),
-  asset('行业首创/达人 - 向右轮播/Group 19.png'),
-  asset('行业首创/达人 - 向右轮播/Group 20.png'),
-  asset('行业首创/达人 - 向右轮播/Group 21.png'),
-  asset('行业首创/达人 - 向右轮播/Group 22.png'),
-  asset('行业首创/达人 - 向右轮播/Group 23.png'),
-  asset('行业首创/达人 - 向右轮播/Group 24.png'),
-  asset('行业首创/达人 - 向右轮播/Group 25.png'),
-  asset('行业首创/达人 - 向右轮播/Group 26.png'),
-  asset('行业首创/达人 - 向右轮播/Group 27.png'),
-  asset('行业首创/达人 - 向右轮播/Group 28.png'),
-  asset('行业首创/达人 - 向右轮播/Group 29.png'),
+  asset('行业首创/达人 - 向右轮播/Group 12.webp'),
+  asset('行业首创/达人 - 向右轮播/Group 13.webp'),
+  asset('行业首创/达人 - 向右轮播/Group 14.webp'),
+  asset('行业首创/达人 - 向右轮播/Group 15.webp'),
+  asset('行业首创/达人 - 向右轮播/Group 18.webp'),
+  asset('行业首创/达人 - 向右轮播/Group 19.webp'),
+  asset('行业首创/达人 - 向右轮播/Group 20.webp'),
+  asset('行业首创/达人 - 向右轮播/Group 21.webp'),
+  asset('行业首创/达人 - 向右轮播/Group 22.webp'),
+  asset('行业首创/达人 - 向右轮播/Group 23.webp'),
+  asset('行业首创/达人 - 向右轮播/Group 24.webp'),
+  asset('行业首创/达人 - 向右轮播/Group 25.webp'),
+  asset('行业首创/达人 - 向右轮播/Group 26.webp'),
+  asset('行业首创/达人 - 向右轮播/Group 27.webp'),
+  asset('行业首创/达人 - 向右轮播/Group 28.webp'),
+  asset('行业首创/达人 - 向右轮播/Group 29.webp'),
 ];
 
 export const creatorPages = [

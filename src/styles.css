@@ -1012,6 +1012,18 @@ body {
   width: var(--locked-page-width);
   max-width: none;
   margin: 0 auto;
+  position: relative;
+}
+
+.section-shell-text{
+
+  position: absolute;
+  left: 50%;
+  bottom: 80px;
+  font-size: 22px;
+  transform: translateX(-50%);
+  color: #999;
+
 }
 
 .site-header__inner {

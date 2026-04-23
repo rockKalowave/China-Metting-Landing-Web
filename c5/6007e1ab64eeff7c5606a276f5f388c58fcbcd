@@ -1,0 +1,33 @@
+src/styles.css
+  h_b2be70cfc5404d 1015-1026
+src/landingData.js
+  8dd67cf485361663 57-64,68-83
+src/App.jsx
+  8dd67cf485361663 20,81,310-311,317,350,352-360
+  h_b2be70cfc5404d 46-47,126,128
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.2",
+  "base_commit_sha": "c56007e1ab64eeff7c5606a276f5f388c58fcbcd",
+  "prompts": {
+    "8dd67cf485361663": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "99d60766-eeb5-42d8-a8b5-9ff8dce816db",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "佳伟",
+      "messages": [],
+      "total_additions": 39,
+      "total_deletions": 29,
+      "accepted_lines": 39,
+      "overriden_lines": 0
+    }
+  },
+  "humans": {
+    "h_b2be70cfc5404d": {
+      "author": "佳伟"
+    }
+  }
+}

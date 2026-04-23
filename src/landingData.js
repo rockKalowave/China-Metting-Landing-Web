@@ -85,5 +85,5 @@ export const creatorTrackItems = [
 
 export const creatorPages = [
   asset('拟邀请达人/达人第一页.webp'),
-  asset('拟邀请达人/达人第二页.webp'),
+  asset('拟邀请达人/达人第二页.png'),
 ];

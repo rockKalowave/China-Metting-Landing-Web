@@ -1,0 +1,14 @@
+src/landingData.js
+  h_b2be70cfc5404d 29,32
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.2",
+  "base_commit_sha": "63b30db8c0864b4dc3689fb15f42e1284d66d633",
+  "prompts": {},
+  "humans": {
+    "h_b2be70cfc5404d": {
+      "author": "佳伟"
+    }
+  }
+}

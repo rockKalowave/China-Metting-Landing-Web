@@ -26,10 +26,10 @@ export const heroDecor = {
 };
 
 export const sectionImages = {
-  about: asset('about/about-full.webp'),
+  about: asset('大会设计/大会介绍1.webp'),
   industry: asset('行业首创/行业首创 - 整图.webp'),
   expoDesign: asset('大会设计/大会设计.webp'),
-  expoDesignReference: asset('大会设计/20.webp'),
+  expoDesignReference: asset('大会设计/大会设计2.webp'),
   values: asset('品牌机构与达人.webp'),
   highlights: asset('展会亮点/展会亮点 - 整图.webp'),
   content: asset('展会内容/展会内容 - 整图.webp'),
